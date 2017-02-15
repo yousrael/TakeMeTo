@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         Button suggest=(Button) findViewById(R.id.button5);
-        search.setOnClickListener(new View.OnClickListener() {
+        suggest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(HomeActivity.this,SuggestTripActivity.class);

@@ -26,10 +26,11 @@ public class StartActivity extends AppCompatActivity {
         });
 
         Button signup=(Button) findViewById(R.id.button3);
-        signin.setOnClickListener(new View.OnClickListener() {
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(StartActivity.this,FormActivity.class);
+                i.putExtra("requestCode", 0);
                 startActivity(i);
 
             }

@@ -23,6 +23,7 @@
         <activity android:name=".Vue.HomeActivity" />
         <activity android:name=".Vue.SearchTripActivity" />
         <activity android:name=".Vue.SuggestTripActivity" />
+        <activity android:name=".Vue.FormActivity" />
         <activity android:name=".Vue.SettingsActivity"></activity>
     </application>
 

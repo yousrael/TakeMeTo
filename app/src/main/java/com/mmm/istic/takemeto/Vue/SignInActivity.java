@@ -20,7 +20,7 @@ public class SignInActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(SignInActivity.this,MyListTripsActivity.class);
+                Intent i=new Intent(SignInActivity.this,HomeActivity.class);
                 startActivity(i);
 
             }
