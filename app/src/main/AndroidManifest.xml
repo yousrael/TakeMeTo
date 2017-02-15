@@ -18,6 +18,12 @@
         <activity android:name=".Vue.ProfilActivity" />
         <activity android:name=".Vue.SearchResultActivity" />
         <activity android:name=".Vue.TripActivity"></activity>
+        <activity android:name=".Vue.StartActivity" />
+        <activity android:name=".Vue.SignInActivity" />
+        <activity android:name=".Vue.MyListTripsActivity" />
+        <activity android:name=".Vue.HomeActivity" />
+        <activity android:name=".Vue.searchTripActivity" />
+        <activity android:name=".Vue.SuggestTripActivity"></activity>
     </application>
 
 </manifest>
