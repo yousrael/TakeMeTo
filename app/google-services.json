@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "502308163958",
+    "firebase_url": "https://takemeto-75d91.firebaseio.com",
+    "project_id": "takemeto-75d91",
+    "storage_bucket": "takemeto-75d91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502308163958:android:cea566cceff6a1fc",
+        "android_client_info": {
+          "package_name": "com.mmm.istic.takemeto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502308163958-t3ia5mb4cnslj6ohefr9mt27scnt6b2u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ-KEMY93FWGH9uolRJ4Qw1v_e6tWbmxU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
