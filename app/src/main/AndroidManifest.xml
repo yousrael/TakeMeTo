@@ -8,14 +8,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Vue.MainActivity">
+        <activity android:name=".Vue.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".Vue.ProfilActivity" />
+        <activity android:name=".Vue.SearchResultActivity" />
+        <activity android:name=".Vue.TripActivity"></activity>
+        <activity android:name=".Vue.SignInActivity" />
+        <activity android:name=".Vue.MyListTripsActivity" />
+        <activity android:name=".Vue.HomeActivity" />
+        <activity android:name=".Vue.searchTripActivity" />
+        <activity android:name=".Vue.SuggestTripActivity"></activity>
     </application>
 
 </manifest>
