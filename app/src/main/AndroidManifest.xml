@@ -17,12 +17,13 @@
         </activity>
         <activity android:name=".Vue.ProfilActivity" />
         <activity android:name=".Vue.SearchResultActivity" />
-        <activity android:name=".Vue.TripActivity"></activity>
+        <activity android:name=".Vue.TripActivity" />
         <activity android:name=".Vue.SignInActivity" />
         <activity android:name=".Vue.MyListTripsActivity" />
         <activity android:name=".Vue.HomeActivity" />
-        <activity android:name=".Vue.searchTripActivity" />
-        <activity android:name=".Vue.SuggestTripActivity"></activity>
+        <activity android:name=".Vue.SearchTripActivity" />
+        <activity android:name=".Vue.SuggestTripActivity" />
+        <activity android:name=".Vue.SettingsActivity"></activity>
     </application>
 
 </manifest>

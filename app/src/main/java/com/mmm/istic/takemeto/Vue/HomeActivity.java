@@ -1,10 +1,13 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.mmm.istic.takemeto.R;
 
@@ -14,6 +17,25 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Button search=(Button) findViewById(R.id.button2);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(HomeActivity.this,SearchTripActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        Button suggest=(Button) findViewById(R.id.button5);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(HomeActivity.this,SuggestTripActivity.class);
+                startActivity(i);
+
+            }
+        });
     }
 
 
@@ -34,24 +56,27 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.profil:
                affichProfil();
                 return true;
-            case R.id.seetings:
-                seetings();
+            case R.id.settings:
+                settings();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void seetings() {
-        //TODO
+    private void settings() {
+        Intent i=new Intent(HomeActivity.this,SettingsActivity.class);
+        startActivity(i);
     }
 
     private void affichProfil() {
-        //TODO
+        Intent i=new Intent(HomeActivity.this,ProfilActivity.class);
+        startActivity(i);
     }
 
     private void getTrips() {
-        //TODO
+        Intent i=new Intent(HomeActivity.this,MyListTripsActivity.class);
+        startActivity(i);
 
     }
 

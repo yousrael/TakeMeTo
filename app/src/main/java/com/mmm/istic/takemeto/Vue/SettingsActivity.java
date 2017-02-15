@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.mmm.istic.takemeto.R;
 
-public class searchTripActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_trip);
+        setContentView(R.layout.activity_settings);
     }
 }

@@ -39,6 +39,8 @@ public class FormActivity extends AppCompatActivity {
     protected  void onClickFunction(){
         if(intent.getIntExtra("requestCode",0) == 0){
             //New user creation
+            Intent i=new Intent(FormActivity.this,HomeActivity.class);
+            startActivity(i);
         }
         else if(intent.getIntExtra("requestCode",1) == 1){
             //Modify existing user
