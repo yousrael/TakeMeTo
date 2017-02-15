@@ -10,6 +10,8 @@ import com.mmm.istic.takemeto.R;
 
 public class StartActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,5 +36,7 @@ public class StartActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 }
