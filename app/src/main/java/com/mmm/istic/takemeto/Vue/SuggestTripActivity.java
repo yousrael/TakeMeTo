@@ -1,13 +1,15 @@
-package com.mmm.istic.takemeto;
+package com.mmm.istic.takemeto.Vue;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AuthentificationActivity extends AppCompatActivity {
+import com.mmm.istic.takemeto.R;
+
+public class SuggestTripActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_authentification);
+        setContentView(R.layout.activity_suggest_trip);
     }
 }
