@@ -70,7 +70,7 @@
         android:layout_alignTop="@+id/textView7"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/editText4"
+        android:id="@+id/edit_newuser_email"
         android:hint="Enter your arrival date" />
 
     <EditText
@@ -92,14 +92,14 @@
         android:layout_alignTop="@+id/textView9"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/editText6"
+        android:id="@+id/edit_newuser_password"
         android:hint="Arrival place" />
 
     <TextView
         android:text="NbPlacesMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText6"
+        android:layout_below="@+id/edit_newuser_password"
         android:layout_alignLeft="@+id/textView9"
         android:layout_alignStart="@+id/textView9"
         android:layout_marginTop="12dp"

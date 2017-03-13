@@ -30,21 +30,20 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Button signin=(Button) findViewById(R.id.button);
+        Button signin = (Button) findViewById(R.id.button);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(SignInActivity.this,HomeActivity.class);
-                startActivity(i);
+                signIn();
 
             }
         });
 
-        TextView signup=(TextView)findViewById(R.id.textView4);
+        TextView signup = (TextView) findViewById(R.id.textView4);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(SignInActivity.this,FormActivity.class);
+                Intent i = new Intent(SignInActivity.this, FormActivity.class);
                 startActivity(i);
 
             }
@@ -59,15 +58,16 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    public void signIn(View view) {
+    public void signIn() {
 
         firebaseAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if (!task.isSuccessful()) {
-                           Log.d("sign in", "sign in ok");
+                        if (task.isSuccessful()) {
+                            Log.d("sign in", "signInWithEmail:onComplete:" + task.isSuccessful());
+                            Intent i = new Intent(SignInActivity.this, HomeActivity.class);
+                            startActivity(i);
                         }
 
                         if (!task.isSuccessful()) {

@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/editText4"
+                android:id="@+id/edit_newuser_email"
                 android:layout_weight="1"
                 android:hint="example@example.com" />
 
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/editText6"
+                android:id="@+id/edit_newuser_password"
                 android:layout_weight="1"
                 android:hint="StrongPassword" />
 
