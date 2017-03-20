@@ -1,6 +1,7 @@
 package com.mmm.istic.takemeto.Vue;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,9 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i=new Intent(StartActivity.this,SignInActivity.class);
                 startActivity(i);
+              /* Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr=12 square amiral andré roux&daddr=saint grégoire"));
+                startActivity(intent);*/
 
             }
         });
