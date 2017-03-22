@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText1"
+                android:id="@+id/edit_form_nom"
                 android:layout_weight="1"
                 android:hint="Smith" />
 
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/edit_signin_password"
+                android:id="@+id/edit_form_prenom"
                 android:layout_weight="1"
                 android:hint="John" />
 
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/edit_newuser_email"
+                android:id="@+id/edit_form_email"
                 android:layout_weight="1"
                 android:hint="example@example.com" />
 
@@ -99,11 +99,12 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="date"
                 android:ems="10"
-                android:id="@+id/editText5"
+                android:id="@+id/edit_form_date_naissance"
                 android:layout_weight="1"
-                android:hint="01/01/2058" />
+                android:hint="01/01/2058"
+                android:focusable="false"/>
+
 
             <TextView
                 android:text="Password : "
@@ -117,9 +118,25 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/edit_newuser_password"
+                android:id="@+id/edit_form_password"
                 android:layout_weight="1"
                 android:hint="StrongPassword" />
+            <TextView
+                android:text="Phone : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_form_phone"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/edit_form_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Phone"
+                android:inputType="phone" />
+
 
 
 
