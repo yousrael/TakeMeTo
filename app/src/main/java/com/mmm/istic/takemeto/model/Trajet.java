@@ -4,9 +4,6 @@ package com.mmm.istic.takemeto.model;
  * Created by steve on 18/03/17.
  */
 
-import android.location.Address;
-
-import java.sql.Date;
 
 import java.util.List;
 
@@ -16,21 +13,15 @@ Classe representant un trajet de l'application
 public class Trajet {
 
     private String user ;
-    private java.util.Date dateDepart ;
-    private Address addressDepart;
-    private Address addressArrivee;
+    private String departureDate;
+    private String arrivalDate;
+    private String departure;
+    private String arrival;
+    private int places ;
     private int prixTrajet;
     private List<String> vayageurs ;
 
-    public Trajet(String user, java.util.Date dateDepart, Address addressdepart, Address addressarrive, int prixTrajet, int places) {
-        this.user = user;
-        this.dateDepart = dateDepart;
-        this.addressDepart = addressdepart;
-        this.addressArrivee = addressarrive;
-        this.prixTrajet = prixTrajet;
-        this.places = places;
 
-    }
 
 
 
@@ -42,12 +33,6 @@ public class Trajet {
         this.places = places;
     }
 
-    public void setDateDepart(java.util.Date dateDepart) {
-        this.dateDepart = dateDepart;
-    }
-
-    private int places ;
-
     public List<String> getVayageurs() {
         return vayageurs;
     }
@@ -55,27 +40,6 @@ public class Trajet {
     public void setVayageurs(List<String> vayageurs) {
         this.vayageurs = vayageurs;
     }
-
-
-
-    public Address getAddressdepart() {
-        return addressDepart;
-    }
-
-    public void setAddressdepart(Address addressdepart) {
-        this.addressDepart = addressdepart;
-    }
-
-    public Address getAddressarrive() {
-        return addressArrivee;
-    }
-
-    public void setAddressarrive(Address addressarrive) {
-        this.addressArrivee = addressarrive;
-    }
-
-
-
 
     public String getUser() {
         return user;
@@ -85,13 +49,7 @@ public class Trajet {
         this.user = user;
     }
 
-    public java.util.Date getDateDepart() {
-        return dateDepart;
-    }
 
-    public void setDateDepart(Date dateDepart) {
-        this.dateDepart = dateDepart;
-    }
 
     public int getPrixTrajet() {
         return prixTrajet;
@@ -130,5 +88,35 @@ public class Trajet {
 
     }
 
+    public String getDepartureDate() {
+        return departureDate;
+    }
 
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public String getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public String getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(String departure) {
+        this.departure = departure;
+    }
+
+    public String getArrival() {
+        return arrival;
+    }
+
+    public void setArrival(String arrival) {
+        this.arrival = arrival;
+    }
 }
