@@ -1,6 +1,7 @@
 package com.mmm.istic.takemeto.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by stephen on 10/02/17.
@@ -12,6 +13,7 @@ public class User {
     private String prenom;
     private String mail ;
     private String phone ;
+    private String dateDeNaissance;
 
     public String getNom() {
         return nom;
@@ -45,14 +47,23 @@ public class User {
         this.phone = phone;
     }
 
+    public String getDateDeNaissance() {
+        return dateDeNaissance;
+    }
+
+    public void setDateDeNaissance(String dateDeNaissance) {
+        this.dateDeNaissance = dateDeNaissance;
+    }
+
     private ArrayList<Trajet> trajetsPropose;
     private ArrayList<Trajet> reservations ;
 
-    public User(String nom, String prenom, String mail, String phone) {
+    public User(String nom, String prenom, String mail, String phone, String date) {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
         this.phone = phone;
+        this.dateDeNaissance = date;
     }
 
 

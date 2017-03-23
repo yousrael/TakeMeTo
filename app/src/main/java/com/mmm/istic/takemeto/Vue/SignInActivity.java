@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,7 +49,7 @@ public class SignInActivity extends AppCompatActivity {
         });
 
         email = (EditText) findViewById(R.id.edit_signin_mail);
-        password = (EditText) findViewById(R.id.edit_signin_password);
+        password = (EditText) findViewById(R.id.edit_signin_prenom);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
