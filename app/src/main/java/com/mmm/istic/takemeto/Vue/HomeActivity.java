@@ -87,6 +87,8 @@ public class HomeActivity extends AppCompatActivity {
                     // User is signed in
                     i.putExtra("requestCode",0);
                     i.putExtra("email", user.getEmail());
+                    i.putExtra("id", user.getUid());
+
                     Log.d("", "onAuthStateChanged:signed_in:" + user.getUid());
                     startActivity(i);
 

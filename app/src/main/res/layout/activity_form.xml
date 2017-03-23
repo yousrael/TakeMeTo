@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/edit_form_email"
+                android:id="@+id/edit_suggest_trip_date_arrivee"
                 android:layout_weight="1"
                 android:hint="example@example.com" />
 
@@ -100,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:id="@+id/edit_form_date_naissance"
+                android:id="@+id/edit_suggest_trip_depart_place"
                 android:layout_weight="1"
                 android:hint="01/01/2058"
                 android:focusable="false"/>
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/edit_form_password"
+                android:id="@+id/edit_suggest_trip_arrival_place"
                 android:layout_weight="1"
                 android:hint="StrongPassword" />
             <TextView

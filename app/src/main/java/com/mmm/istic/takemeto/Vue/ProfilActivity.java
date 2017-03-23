@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +22,9 @@ public class ProfilActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    String email;
+    String id;
+    Query query;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,19 +34,35 @@ public class ProfilActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int requestCode = intent.getIntExtra("requestCode",1);
-        if(requestCode == 0){
+       // if(requestCode == 0){
             //Own user account
-           String email= intent.getStringExtra("email");
+        email = intent.getStringExtra("email");
+        id = intent.getStringExtra("id");
+        Log.e("get User by id", "id: "+id);
         Log.e("get User by email", "email: "+email);
-            databaseReference = FirebaseDatabase.getInstance().getReference("users");
-            Query query= databaseReference.orderByChild("email").equalTo(email);
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        //Id d'un objet de la BD pour test : "-KfobKb7oMRm1JMQvl8L", a pares "users" ci-dessus précèder d'un "/"
+        //databaseReference = FirebaseDatabase.getInstance().getReference("users/"+id);
+        Log.e("db ref",databaseReference.toString());
+
+       // query= databaseReference.getRef();
+        //Log.d("query", query.getRef().toString());
+        //query= databaseReference.getRef();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                       User user= (User) postSnapshot.getValue();
-                        Log.d("get User by email","SUCCESS"+user.getPrenom());
+                   /// for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    if(dataSnapshot.getValue() != null){
+                        User user= dataSnapshot.getValue(User.class);
+                        Log.e("get User by email","SUCCESS"+dataSnapshot.getValue());
+                        Log.e("get User by email","SUCCESS"+user.getNom());
                     }
+                    else {
+                        Log.e("null user","null user");
+                    }
+
+
+                   // }
                 }
 
                 @Override
@@ -51,15 +71,12 @@ public class ProfilActivity extends AppCompatActivity {
                 }
             });
 
-
-
-            button.setEnabled(true);
-        }
-        else if(requestCode == 1){
+        /*else if(requestCode == 1){
             //Other user account
             button.setText("Send message");
             button.setEnabled(false);
             //TODO:Envoyer un message à un autre utilisateur
-        }
-    }
+        }*/
+    //}
+}
 }
