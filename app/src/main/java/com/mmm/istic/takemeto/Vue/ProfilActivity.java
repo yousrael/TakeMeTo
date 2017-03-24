@@ -29,19 +29,23 @@ public class ProfilActivity extends AppCompatActivity {
         Button button = (Button)findViewById(R.id.button1);
 
         Intent intent = getIntent();
-        int requestCode = intent.getIntExtra("requestCode",1);
-        if(requestCode == 0){
+        //int requestCode = intent.getIntExtra("requestCode",1);
+       // if(requestCode == 0){
             //Own user account
            String email= intent.getStringExtra("email");
         Log.e("get User by email", "email: "+email);
+
             databaseReference = FirebaseDatabase.getInstance().getReference("users");
             Query query= databaseReference.orderByChild("email").equalTo(email);
+        databaseReference.child(email).getRef();
+
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                        User user= (User) postSnapshot.getValue();
-                        Log.d("get User by email","SUCCESS"+user.getPrenom());
+                        System.out.println("user retreived");
+                       // Log.d("get User by email","SUCCESS"+user.getPrenom());
                     }
                 }
 
@@ -55,11 +59,11 @@ public class ProfilActivity extends AppCompatActivity {
 
             button.setEnabled(true);
         }
-        else if(requestCode == 1){
+     /*   else if(requestCode == 1){
             //Other user account
             button.setText("Send message");
             button.setEnabled(false);
             //TODO:Envoyer un message à un autre utilisateur
         }
-    }
+    }*/
 }
