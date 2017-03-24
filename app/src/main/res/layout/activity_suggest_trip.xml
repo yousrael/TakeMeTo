@@ -59,7 +59,7 @@
         android:layout_alignTop="@+id/textView6"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/editText3"
+        android:id="@+id/edit_suggest_trip_date_depart"
         android:hint="Enter your departure date" />
 
     <EditText
@@ -70,7 +70,7 @@
         android:layout_alignTop="@+id/textView7"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/edit_form_email"
+        android:id="@+id/edit_suggest_trip_date_arrivee"
         android:hint="Enter your arrival date" />
 
     <EditText
@@ -81,7 +81,7 @@
         android:layout_alignTop="@+id/textView8"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/edit_form_date_naissance"
+        android:id="@+id/edit_suggest_trip_depart_place"
         android:hint="Departure place" />
 
     <EditText
@@ -92,14 +92,14 @@
         android:layout_alignTop="@+id/textView9"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/edit_form_password"
+        android:id="@+id/edit_suggest_trip_arrival_place"
         android:hint="Arrival place" />
 
     <TextView
         android:text="NbPlacesMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_form_password"
+        android:layout_below="@+id/edit_suggest_trip_arrival_place"
         android:layout_alignLeft="@+id/textView9"
         android:layout_alignStart="@+id/textView9"
         android:layout_marginTop="12dp"
@@ -135,8 +135,59 @@
         android:layout_alignLeft="@+id/editText8"
         android:layout_alignStart="@+id/editText8"
         android:layout_marginTop="25dp"
-        android:id="@+id/editText9"
+        android:id="@+id/edit_suggest_trip_comment"
         android:hint="Write a comment" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/edit_suggest_trip_comment">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="Number of sits"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_suggest_trip_sits" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/edit_suggest_trip_sits"
+                android:hint="Enter the number of places available" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="Price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_suggest_trip_price" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/edit_suggest_trip_price"
+                android:hint="Enter a price" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
         android:text="Create"
@@ -145,7 +196,7 @@
         android:layout_toRightOf="@+id/textView8"
         android:layout_toEndOf="@+id/textView8"
         android:id="@+id/button7"
-        android:layout_below="@+id/editText9" />
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>

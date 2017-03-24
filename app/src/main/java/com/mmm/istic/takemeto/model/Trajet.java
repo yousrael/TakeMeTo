@@ -6,6 +6,7 @@ package com.mmm.istic.takemeto.model;
 
 
 import java.util.List;
+import java.util.Map;
 
 /**
 Classe representant un trajet de l'application
@@ -17,10 +18,22 @@ public class Trajet {
     private String arrivalDate;
     private String departure;
     private String arrival;
-    private int places ;
-    private int prixTrajet;
-    private List<String> vayageurs ;
+    private Integer places ;
+    private Integer prixTrajet;
+    private Map<String, String> vayageurs ;
 
+    public Trajet(String user, String departureDate, String arrivalDate, String departure, String arrival,
+                  Integer places, Integer prixTrajet, Map<String, String> vayageurs){
+        this.user = user;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.places = places;
+        this.prixTrajet = prixTrajet;
+        this.vayageurs = vayageurs;
+
+    }
 
 
 
@@ -33,11 +46,11 @@ public class Trajet {
         this.places = places;
     }
 
-    public List<String> getVayageurs() {
+    public Map<String, String> getVayageurs() {
         return vayageurs;
     }
 
-    public void setVayageurs(List<String> vayageurs) {
+    public void setVayageurs(Map<String, String> vayageurs) {
         this.vayageurs = vayageurs;
     }
 
@@ -64,14 +77,14 @@ public class Trajet {
      * @param user l'identifinat de l'utilisateur
      * @return true si l'utilisateur a été ajouté faux si non
      */
-    public boolean addVoyageur (String user){
+   /* public boolean addVoyageur (String user){
         boolean res = nombresPlacesDisponible()>0;
         if(res){
             this.vayageurs.add(user);
         }
        return res;
 
-    }
+    }*/
 
     /**
      * Retourne le nombre de places disponible sur le trajet

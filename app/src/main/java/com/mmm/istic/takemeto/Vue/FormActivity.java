@@ -24,7 +24,6 @@ import com.mmm.istic.takemeto.model.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class FormActivity extends AppCompatActivity {
@@ -55,11 +54,11 @@ public class FormActivity extends AppCompatActivity {
         TextView textview1 = (TextView) findViewById(R.id.textView6);
         TextView textview2 = (TextView) findViewById(R.id.textView7);
 
-        email = (EditText) findViewById(R.id.edit_form_email);
-        password = (EditText) findViewById(R.id.edit_form_password);
+        email = (EditText) findViewById(R.id.edit_suggest_trip_date_arrivee);
+        password = (EditText) findViewById(R.id.edit_suggest_trip_arrival_place);
         nom = (EditText) findViewById(R.id.edit_form_nom);
         prenom = (EditText) findViewById(R.id.edit_form_prenom);
-        dateDeNaissance = (EditText) findViewById(R.id.edit_form_date_naissance);
+        dateDeNaissance = (EditText) findViewById(R.id.edit_suggest_trip_depart_place);
         //Dialog to select a date, see also updateDateDeNaissance() at the bottom
         date = new DatePickerDialog.OnDateSetListener() {
 
@@ -130,13 +129,12 @@ public class FormActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d("add user", "createUserWithEmail:onComplete:" + task.isSuccessful());
                             addNewUser();
-                            Intent i=new Intent(FormActivity.this, HomeActivity.class);
+                            Intent i = new Intent(FormActivity.this, HomeActivity.class);
                             startActivity(i);
                         }
 
                         if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Error adding new user",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Error adding new user",Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -144,8 +142,8 @@ public class FormActivity extends AppCompatActivity {
     }
 
     private void addNewUser() {
-        String key =  databaseReference.push().getKey(); //generating a key
-       databaseReference.child(key).setValue(new User(nom.getText().toString(),
+        String key = databaseReference.push().getKey(); //generating a key
+        databaseReference.child((String.valueOf(key))).setValue(new User(nom.getText().toString(),
                 prenom.getText().toString(),
                 email.getText().toString(),
                 phone.getText().toString(),

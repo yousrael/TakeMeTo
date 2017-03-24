@@ -58,6 +58,7 @@ public class User {
     private ArrayList<Trajet> trajetsPropose;
     private ArrayList<Trajet> reservations ;
 
+    public User () {}
     public User(String nom, String prenom, String mail, String phone, String date) {
         this.nom = nom;
         this.prenom = prenom;
