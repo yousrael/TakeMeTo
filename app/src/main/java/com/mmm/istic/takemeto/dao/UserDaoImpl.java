@@ -159,6 +159,8 @@ Exemple appel
 
 UserDaoImpl serviceUser = new UserDaoImpl();
 
+String email = serviceUser.GetUser();
+
 serviceUser.findUserbyEmail(new SimpleCallback<User>() {
     @Override
     public void callback(User data) {
@@ -168,6 +170,6 @@ serviceUser.findUserbyEmail(new SimpleCallback<User>() {
             // error
         }
     }
-},"user1@takemeto.com");
+},email);
 
  */
