@@ -99,6 +99,16 @@
         android:onClick="signIn"
         android:text="Sign IN" />
 
+    <Button
+        android:id="@+id/signinasuser1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/edit_signin_prenom"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:onClick="signInasuser"
+        android:text="Sign in as user1" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
