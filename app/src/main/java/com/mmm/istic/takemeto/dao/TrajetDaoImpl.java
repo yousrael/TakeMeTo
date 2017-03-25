@@ -11,7 +11,9 @@ import com.mmm.istic.takemeto.model.Trajet;
 import com.mmm.istic.takemeto.util.Criteria;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -37,16 +39,22 @@ public class TrajetDaoImpl implements TrajetDao {
 
     @Override
     public List<Trajet> findTrajetbyCriteria(Criteria criteria) {
-
-final List<Trajet> searchedTrajets = new ArrayList<Trajet>();
+        final List<Trajet> searchedTrajets = new ArrayList<Trajet>();
         ValueEventListener trajetListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
-                Iterable<DataSnapshot> trajets = dataSnapshot.getChildren();
-                if (trajets != null){
-                    for(DataSnapshot child :trajets){
-                        Trajet trajet = (Trajet) child.getValue();
+               // Iterable<DataSnapshot> trajets = dataSnapshot.getChildren();
+                //Map<String, Trajet> trajets = new HashMap<String, Trajet>();
+                if (dataSnapshot.getValue() != null) {
+                    System.out.println("Bonjour");
+                   Log.d("les trajets", "les trajets : ");
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        Trajet trajet = child.getValue(Trajet.class);
+                        Log.d("trajet depart", trajet.getDeparture());
+                        Log.d("trajet arrivee", trajet.getArrival());
+                        Log.d("trajet place", String.valueOf(trajet.getPlaces()));
+                        Log.d("trajet prix", String.valueOf(trajet.getPrixTrajet()));
                         searchedTrajets.add(trajet);
 
                     }
@@ -62,11 +70,10 @@ final List<Trajet> searchedTrajets = new ArrayList<Trajet>();
             }
         };
 
-
-
-        database.equalTo(criteria.getDeparture(),"departure")
-                .equalTo(criteria.getArrival(),"arrival").
-                equalTo(criteria.getDepartureDate(),"departureDate").addListenerForSingleValueEvent(trajetListener);
+        Log.d("departure date ", criteria.getDepartureDate());
+        database.equalTo(criteria.getDepartureDate(), "departureDate").addListenerForSingleValueEvent(trajetListener);
+                //.equalTo(criteria.getArrival(), "arrival").
+               // equalTo(criteria.getDepartureDate(), "departureDate").addListenerForSingleValueEvent(trajetListener);
 
         return searchedTrajets;
 

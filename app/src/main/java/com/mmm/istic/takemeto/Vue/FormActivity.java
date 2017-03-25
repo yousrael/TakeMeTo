@@ -150,6 +150,10 @@ public class FormActivity extends AppCompatActivity {
                 dateDeNaissance.getText().toString()));
     }
 
+    //Choose profil image
+    public void chooseProfilImage(View view) {
+    }
+
    /* protected  void onClickFunction(){
       //  if(intent.getIntExtra("requestCode",0) == 0){
             //New user creation

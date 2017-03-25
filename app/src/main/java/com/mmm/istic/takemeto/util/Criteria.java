@@ -14,6 +14,12 @@ public class Criteria {
     private String arrival;
     private String departureDate;
 
+    public Criteria(String departureDate, String departure, String arrival){
+        this.departure = departure;
+        this.arrival = arrival;
+        this.departureDate = departureDate;
+    }
+
     public String getDeparture() {
         return departure;
     }
