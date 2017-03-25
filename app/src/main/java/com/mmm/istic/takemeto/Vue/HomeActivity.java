@@ -77,29 +77,21 @@ public class HomeActivity extends AppCompatActivity {
     private void affichProfil() {
       //  FirebaseAuth.AuthStateListener mAuthListener;
       final  Intent i;
-
-         i=new Intent(HomeActivity.this,ProfilActivity.class);
-       // mAuthListener = new FirebaseAuth.AuthStateListener() {
-           /* @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {*/
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        i=new Intent(HomeActivity.this,ProfilActivity.class);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     // User is signed in
                     i.putExtra("requestCode",0);
                     i.putExtra("email", user.getEmail());
-                    i.putExtra("id", user.getUid());
-
-                    Log.d("", "onAuthStateChanged:signed_in:" + user.getUid());
                     startActivity(i);
 
                 } else {
                     // User is signed out
                     Log.d("", "onAuthStateChanged:signed_out");
                 }
-                // ...
             }
 
-        // ...
+
 
 
     private void getTrips() {
@@ -107,32 +99,4 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
 
     }
-   /* mAuthListener = new FirebaseAuth.AuthStateListener() {
-        @Override
-        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-            if (user != null) {
-                // User is signed in
-                Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-            } else {
-                // User is signed out
-                Log.d(TAG, "onAuthStateChanged:signed_out");
-            }
-            // ...
-        }
-    };
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }*/
-
 }
