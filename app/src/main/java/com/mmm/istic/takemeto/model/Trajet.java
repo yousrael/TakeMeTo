@@ -41,9 +41,6 @@ public class Trajet {
 
     }
 
-
-   public Trajet(){}
-
     public int getPlaces() {
         return places;
     }
