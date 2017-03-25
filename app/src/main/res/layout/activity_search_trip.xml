@@ -68,7 +68,7 @@
                 android:layout_alignTop="@+id/textView6"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/edit_suggest_trip_date_depart"
+                android:id="@+id/edit_departureDate"
                 android:hint="Enter your departure date" />
 
             <EditText
@@ -90,7 +90,7 @@
                 android:layout_alignTop="@+id/textView8"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/edit_suggest_trip_depart_place"
+                android:id="@+id/edit_departure"
                 android:hint="Departure place" />
 
             <EditText
@@ -101,14 +101,14 @@
                 android:layout_alignTop="@+id/textView9"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/edit_suggest_trip_arrival_place"
+                android:id="@+id/edit_arrival"
                 android:hint="Arrival place" />
 
             <Button
                 android:text="Search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button6"
+                android:id="@+id/button_searchTrip"
                 android:layout_marginTop="24dp"
                 android:layout_below="@+id/edit_suggest_trip_arrival_place"
                 android:layout_toRightOf="@+id/textView8"
