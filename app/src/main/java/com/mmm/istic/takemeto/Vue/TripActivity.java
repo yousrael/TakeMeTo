@@ -105,7 +105,7 @@ public class TripActivity extends AppCompatActivity {
         }
         else{
             //Other user account
-            button.setEnabled(false);
+            button.setEnabled(true);
             button.setText("book this trip");
         }
 
