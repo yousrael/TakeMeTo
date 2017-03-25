@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "502308163958",
-    "firebase_url": "https://takemeto-75d91.firebaseio.com",
-    "project_id": "takemeto-75d91",
-    "storage_bucket": "takemeto-75d91.appspot.com"
+    "project_number": "349848669935",
+    "firebase_url": "https://takemeto-96f3b.firebaseio.com",
+    "project_id": "takemeto-96f3b",
+    "storage_bucket": "takemeto-96f3b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:502308163958:android:cea566cceff6a1fc",
+        "mobilesdk_app_id": "1:349848669935:android:cea566cceff6a1fc",
         "android_client_info": {
           "package_name": "com.mmm.istic.takemeto"
         }
       },
       "oauth_client": [
         {
-          "client_id": "502308163958-t3ia5mb4cnslj6ohefr9mt27scnt6b2u.apps.googleusercontent.com",
+          "client_id": "349848669935-a3tm9ku8cpgigtpmqs6at5rhrgmopa89.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmm.istic.takemeto",
+            "certificate_hash": "b9a00814062cb3b8d8a1f7cb3b6227da74786c3a"
+          }
+        },
+        {
+          "client_id": "349848669935-pbdfrgatkqg10gm5k459krnhgiinc94l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQ-KEMY93FWGH9uolRJ4Qw1v_e6tWbmxU"
+          "current_key": "AIzaSyAuA9DtfYhNhBPipIg-SfoyiP_rdKFyT98"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349848669935-pbdfrgatkqg10gm5k459krnhgiinc94l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
