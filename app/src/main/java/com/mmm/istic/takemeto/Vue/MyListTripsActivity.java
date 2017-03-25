@@ -1,8 +1,11 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -16,6 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mmm.istic.takemeto.R;
+import com.mmm.istic.takemeto.dao.SimpleCallback;
+import com.mmm.istic.takemeto.dao.UserDao;
+import com.mmm.istic.takemeto.dao.UserDaoImpl;
 import com.mmm.istic.takemeto.model.Trajet;
 import com.mmm.istic.takemeto.model.User;
 
@@ -34,51 +40,32 @@ public class MyListTripsActivity extends AppCompatActivity {
     //Firebase
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-    private DatabaseReference databaseReference2;
     ArrayList<Trajet> values;
-    String name;
-
-
+    UserDao userdao = new UserDaoImpl();
+    User userbase;
+    String email;
+    String keyUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_list_trips);
-        databaseReference2 = FirebaseDatabase.getInstance().getReference("users");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String email=user.getEmail();
-        Query query = databaseReference.orderByChild("mail").equalTo(email);
-
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        email = user.getEmail();
+        userdao.findUserbyEmail(new SimpleCallback<User>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue() != null){
-                    Map<String, User> users = new HashMap<String, User>();
-                    for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-                        User user = userSnapshot.getValue(User.class);
-                        users.put(userSnapshot.getKey(), user);
-                    }
-
-                    ArrayList<User> values = new ArrayList<>(users.values());
-                    List<String> keys = new ArrayList<String>(users.keySet());
-                    for (User user: values) {
-                        name=user.getNom()+""+user.getPrenom();
-                    }
-                }
-                else {
-                    Log.e("null user","null user");
+            public void callback(User data) {
+                if (data != null) {
+                    userbase = data;
+                    TextView welcome = (TextView) findViewById(R.id.textView5);
+                    welcome.setText("Welcome  "+userbase.getNom() + "  " + userbase.getPrenom());
+                } else {
+                    Log.e("Error", "Error in getting user");
                 }
             }
+        }, email);
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d("get User by email","Failure");
-            }
-        });
-
-         TextView welcome=(TextView) findViewById(R.id.textView5);
-        welcome.setText(name);
 
         malistView = ((ListView) findViewById(R.id.listeViewTrajets));
         //Création de la ArrayList qui nous permettra de remplire la listView
@@ -87,49 +74,80 @@ public class MyListTripsActivity extends AppCompatActivity {
         //Firebase database
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("trajets");
-
-
-
-       Query querytrajets = databaseReference.orderByChild("user").equalTo(user);
-
-
-        querytrajets.addListenerForSingleValueEvent(new ValueEventListener() {
+        userdao.findUserKeybyEmail(new SimpleCallback<String>() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue() != null){
-                    Map<String, Trajet> trajets = new HashMap<String, Trajet>();
-                    for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
-                        Trajet trajet = userSnapshot.getValue(Trajet.class);
-                        trajets.put(userSnapshot.getKey(), trajet);
-                    }
+            public void callback(String data) {
+                if (data != null) {
+                    keyUser = data;
+                    Query querytrajets = databaseReference.orderByChild("user").equalTo(keyUser);
 
-                   values = new ArrayList<>(trajets.values());
-                }
-                else {
-                    Log.e("Error","Error in getting trips");
+
+                    querytrajets.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.getValue() != null) {
+                                Map<String, Trajet> trajets = new HashMap<String, Trajet>();
+                                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                    Trajet trajet = userSnapshot.getValue(Trajet.class);
+                                    trajets.put(userSnapshot.getKey(), trajet);
+                                }
+
+
+                                values = new ArrayList<>(trajets.values());
+                                for (int i = 0; i < values.size(); i++) {
+
+                                    map = new HashMap<String, String>();
+                                    map.put("departure", values.get(i).getDeparture() + "  ");
+                                    map.put("arrival", values.get(i).getArrival() + "  ");
+                                    map.put("departureDate", values.get(i).getDepartureDate() + "  ");
+                                    map.put("arrivalDate", values.get(i).getArrivalDate());
+                                    mapItems.add(map);
+                                }
+
+                                // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
+                                mlistAdapter = new SimpleAdapter(getBaseContext(), mapItems, R.layout.item,
+                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate","places","prixTrajet"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4,R.id.textView5,R.id.textView6});
+                                //ici on affecte l'adapteur pour la listView afin de la remplir avec les elemets de item
+                                malistView.setAdapter(mlistAdapter);
+
+                            } else {
+                                Log.e("Error", "Error in getting trips");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.d("get List trajets", "Failure");
+                        }
+                    });
+
+
+                } else {
+                    Log.e("Error", "Error in getting user");
                 }
             }
-
+        }, email);
+        malistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d("get List trajets","Failure");
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(MyListTripsActivity.this, TripActivity.class);
+                String departure = ((TextView) view.findViewById(R.id.textView1)).getText().toString();
+                String arrival = ((TextView) view.findViewById(R.id.textView2)).getText().toString();
+                String departureDate = ((TextView) view.findViewById(R.id.textView3)).getText().toString();
+                String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString();
+                String places = ((TextView) view.findViewById(R.id.textView5)).getText().toString();
+                String prixTrajet = ((TextView) view.findViewById(R.id.textView6)).getText().toString();
+                 intent.putExtra("departure",departure);
+                intent.putExtra("arrival",arrival);
+                intent.putExtra("departureDate",departureDate);
+                intent.putExtra("arrivalDate",arrivalDate);
+                intent.putExtra("places",places);
+                intent.putExtra("prixTrajet",prixTrajet);
+                intent.putExtra("emailUser",email);
+                startActivity(intent);
             }
         });
-        for (int i = 0; i < values.size(); i++) {
-
-           map=new HashMap<String, String>();
-            map.put("departure", values.get(i).getDeparture()+"  ");
-            map.put("arrival", values.get(i).getArrival()+"  ");
-            map.put("departureDate", values.get(i).getDepartureDate()+"  ");
-            map.put("arrivalDate", values.get(i).getArrivalDate());
-            mapItems.add(map);
-        }
-
-        // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
-        mlistAdapter = new SimpleAdapter(this.getBaseContext(), mapItems, R.layout.item,
-                new String[]{"departure", "arrival", "departureDate", "arrivalDate"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4});
-        //ici on affecte l'adapteur pour la listView afin de la remplir avec les elemets de item
-        malistView.setAdapter(mlistAdapter);
-
     }
+
 }
