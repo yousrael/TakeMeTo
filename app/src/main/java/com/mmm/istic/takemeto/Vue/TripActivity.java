@@ -1,8 +1,10 @@
 package com.mmm.istic.takemeto.Vue;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +28,7 @@ import com.mmm.istic.takemeto.model.User;
 
 public class TripActivity extends AppCompatActivity {
 
-    Intent intent = getIntent();
+
 
     String emailTripUser;
     String emailCurrentUser;
@@ -35,7 +37,7 @@ public class TripActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
-
+        Intent intent = getIntent();
         //get the 2 eamil
 
         UserDaoImpl serviceUser = new UserDaoImpl();
@@ -43,7 +45,7 @@ public class TripActivity extends AppCompatActivity {
         emailTripUser = intent.getStringExtra("emailUser");
 
         //set listener sur le nom pour afficher le profile
-        TextView showUser = (TextView) findViewById(R.id.t_nom);
+        TextView showUser = (TextView) findViewById(R.id.t_nom_prenom);
         showUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +67,7 @@ public class TripActivity extends AppCompatActivity {
         });
 
         Button button = (Button)findViewById(R.id.t_bouton);
-        Trajet trajet = new Trajet();
+        final Trajet trajet = new Trajet();
         trajet.setDeparture(intent.getStringExtra("departure"));
         trajet.setArrival(intent.getStringExtra("arrival"));
         trajet.setDepartureDate(intent.getStringExtra("departureDate"));
@@ -83,9 +85,9 @@ public class TripActivity extends AppCompatActivity {
         TextView t_depart_date = (TextView)findViewById(R.id.t_depart_date);
         TextView t_depart_lieu = (TextView)findViewById(R.id.t_depart_lieu);
 
-        t_numero.setText(trajet.hashCode());
-        t_nbplacelibre.setText(trajet.getPlaces());
-        t_prix.setText(trajet.getPrixTrajet());
+        t_numero.setText(""+trajet.hashCode());
+        t_nbplacelibre.setText(""+trajet.getPlaces());
+        t_prix.setText(""+trajet.getPrixTrajet()+"€");
         t_arrival_date.setText(trajet.getArrivalDate());
         t_arrival_lieu.setText(trajet.getArrival());
         t_depart_date.setText(trajet.getDepartureDate());
@@ -102,12 +104,40 @@ public class TripActivity extends AppCompatActivity {
             //Own user account
             button.setEnabled(true);
             button.setText("Edit trip");
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO:edit un trip
+                    Log.e("qsdqsd","CLICK edit");
+                    Intent intent = new Intent(TripActivity.this,SuggestTripActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
         else{
             //Other user account
             button.setEnabled(true);
-            button.setText("book this trip");
+            button.setText("book this trip"); button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO:Book un trip
+                    Log.e("qsdqsd","CLICK book");
+                    Intent intent = new Intent(TripActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
+
+        Button buttonGoogle = (Button)findViewById(R.id.t_google);
+        buttonGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("qsdqsd","CLICK MAP!!!");
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?saddr="+trajet.getDeparture()+"&daddr="+trajet.getArrival()));
+                startActivity(intent);
+            }
+        });
 
 
 

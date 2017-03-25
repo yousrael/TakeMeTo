@@ -155,7 +155,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/t_google"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

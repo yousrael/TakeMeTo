@@ -72,7 +72,7 @@ public class ProfilActivity extends AppCompatActivity {
         String imageFile = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
         Button button = (Button)findViewById(R.id.button1);
-        button.setVisibility(View.INVISIBLE);
+        button.setVisibility(View.VISIBLE);
         Intent intent = getIntent();
 
         int requestCode = intent.getIntExtra("requestCode",1);
