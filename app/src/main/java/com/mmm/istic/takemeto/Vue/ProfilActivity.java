@@ -1,8 +1,12 @@
 package com.mmm.istic.takemeto.Vue;
 
 import android.content.Intent;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,10 +26,13 @@ import com.mmm.istic.takemeto.dao.SimpleCallback;
 import com.mmm.istic.takemeto.dao.UserDaoImpl;
 import com.mmm.istic.takemeto.model.User;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.R.attr.bitmap;
 
 /**
  * Affiche le profile de l'utilisateur courrant
@@ -57,6 +64,12 @@ public class ProfilActivity extends AppCompatActivity {
          p_email = (TextView) findViewById(R.id.p_email);
          p_birthdate  = (TextView) findViewById(R.id.p_birthdate);
          p_phone  = (TextView) findViewById(R.id.p_phone);
+        Bitmap bmp =  BitmapFactory.decodeResource(getResources(), R.id.imageView);//your image
+        ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, bYtE);
+        bmp.recycle();
+        byte[] byteArray = bYtE.toByteArray();
+        String imageFile = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
         Button button = (Button)findViewById(R.id.button1);
         button.setVisibility(View.INVISIBLE);
