@@ -74,4 +74,13 @@ public class SignInActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void signInasuser(View v) {
+
+        email = (EditText) findViewById(R.id.edit_signin_mail);
+        email.setText("user1@takemeto.com");
+        password = (EditText) findViewById(R.id.edit_signin_prenom);
+        password.setText("123456");
+    }
+
 }
