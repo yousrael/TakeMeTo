@@ -47,7 +47,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
+            android:elevation="1dp"
             android:orientation="horizontal">
 
             <TextView
@@ -64,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="John Doe El hamich laposte"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
         </LinearLayout>
