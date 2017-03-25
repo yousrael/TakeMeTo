@@ -228,6 +228,33 @@ public class MyListTripsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        malistViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(MyListTripsActivity.this, TripActivity.class);
+                String departure = ((TextView) view.findViewById(R.id.textView1)).getText().toString();
+                String arrival = ((TextView) view.findViewById(R.id.textView2)).getText().toString();
+                String departureDate = ((TextView) view.findViewById(R.id.textView3)).getText().toString();
+                String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString();
+                String places = ((TextView) view.findViewById(R.id.textView5)).getText().toString();
+                String prixTrajet = ((TextView) view.findViewById(R.id.textView6)).getText().toString();
+                intent.putExtra("departure",departure);
+                intent.putExtra("arrival",arrival);
+                intent.putExtra("departureDate",departureDate);
+                intent.putExtra("arrivalDate",arrivalDate);
+                intent.putExtra("places",places);
+                intent.putExtra("prixTrajet",prixTrajet);
+                intent.putExtra("emailUser",email);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
     }
 
 }
