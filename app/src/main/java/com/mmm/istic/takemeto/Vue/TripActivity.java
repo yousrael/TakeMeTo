@@ -3,6 +3,7 @@ package com.mmm.istic.takemeto.Vue;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,6 +30,10 @@ public class TripActivity extends AppCompatActivity {
             button.setEnabled(false);
             //TODO:Envoyer un message à un autre utilisateur
         }
+
+    }
+
+    public void testInrollTrip(View view) {
 
     }
 }

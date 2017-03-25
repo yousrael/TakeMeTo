@@ -95,5 +95,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView24" />
     </LinearLayout>
+    <Button
+        android:text="Choose this trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="testInrollTrip"
+        android:id="@+id/button_inrol_trip" />
 
 </RelativeLayout>

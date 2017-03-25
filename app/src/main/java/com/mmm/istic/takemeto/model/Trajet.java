@@ -5,6 +5,7 @@ package com.mmm.istic.takemeto.model;
  */
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,10 +21,10 @@ public class Trajet {
     private String arrival;
     private Integer places ;
     private Integer prixTrajet;
-    private Map<String, String> vayageurs ;
+    private ArrayList<String> vayageurs ;
 
     public Trajet(String user, String departureDate, String arrivalDate, String departure, String arrival,
-                  Integer places, Integer prixTrajet, Map<String, String> vayageurs){
+                  Integer places, Integer prixTrajet, ArrayList<String> vayageurs){
         this.user = user;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
@@ -46,11 +47,11 @@ public class Trajet {
         this.places = places;
     }
 
-    public Map<String, String> getVayageurs() {
+    public ArrayList<String> getVayageurs() {
         return vayageurs;
     }
 
-    public void setVayageurs(Map<String, String> vayageurs) {
+    public void setVayageurs(ArrayList<String> vayageurs) {
         this.vayageurs = vayageurs;
     }
 
