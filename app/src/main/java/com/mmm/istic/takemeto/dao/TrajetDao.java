@@ -29,4 +29,11 @@ public interface TrajetDao {
      * @return Une map de trajet
      */
     public List<Trajet> findTrajetbyCriteria(Criteria criteria);
+
+    /**
+     * Recherche tous les trajets
+     * @return
+     */
+    public List<Trajet> findAll();
+
 }
