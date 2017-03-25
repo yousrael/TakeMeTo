@@ -75,21 +75,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void affichProfil() {
-      //  FirebaseAuth.AuthStateListener mAuthListener;
-      final  Intent i;
-        i=new Intent(HomeActivity.this,ProfilActivity.class);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    i.putExtra("requestCode",0);
-                    i.putExtra("email", user.getEmail());
-                    startActivity(i);
+        //  FirebaseAuth.AuthStateListener mAuthListener;
+        final Intent i;
+        i = new Intent(HomeActivity.this, ProfilActivity.class);
+        i.putExtra("requestCode", 0);
+        startActivity(i);
 
-                } else {
-                    // User is signed out
-                    Log.d("", "onAuthStateChanged:signed_out");
-                }
-            }
+    }
 
 
 
