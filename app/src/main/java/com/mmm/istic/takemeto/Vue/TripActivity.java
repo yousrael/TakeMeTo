@@ -20,7 +20,7 @@ public class TripActivity extends AppCompatActivity {
 
         Button button = (Button)findViewById(R.id.button9);
 
-        if(intent.getIntExtra("requestCode",0) == 0){
+      /*  if(intent.getIntExtra("requestCode",0) == 0){
             //Own user account
             button.setEnabled(true);
         }
@@ -29,7 +29,7 @@ public class TripActivity extends AppCompatActivity {
             button.setText("Send message");
             button.setEnabled(false);
             //TODO:Envoyer un message à un autre utilisateur
-        }
+        }*/
 
     }
 
