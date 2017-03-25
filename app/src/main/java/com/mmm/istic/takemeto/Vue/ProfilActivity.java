@@ -59,7 +59,7 @@ public class ProfilActivity extends AppCompatActivity {
          p_phone  = (TextView) findViewById(R.id.p_phone);
 
         Button button = (Button)findViewById(R.id.button1);
-        button.setVisibility(View.INVISIBLE);
+        button.setVisibility(View.VISIBLE);
         Intent intent = getIntent();
 
         int requestCode = intent.getIntExtra("requestCode",1);
