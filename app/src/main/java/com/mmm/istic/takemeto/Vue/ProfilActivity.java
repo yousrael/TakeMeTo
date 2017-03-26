@@ -112,11 +112,15 @@ public class ProfilActivity extends AppCompatActivity {
 
 
             String profileEmail = intent.getStringExtra("email");
-            if(email != null && !email.isEmpty()) {
+            Log.e("Profile","email: "+profileEmail);
+            if(profileEmail != null) {
                 UserDaoImpl serviceUser = new UserDaoImpl();
+
+                Log.e("Profile","searching for user: "+profileEmail);
                 serviceUser.findUserbyEmail(new SimpleCallback<User>() {
                     @Override
                     public void callback(User data) {
+                        Log.e("Profile callback","Callback with user "+data);
                         if (data != null) {
                             byte [] encodeByte=Base64.decode(data.getImage(),Base64.DEFAULT);
                             Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -129,6 +133,7 @@ public class ProfilActivity extends AppCompatActivity {
 
                         } else {
                             // error
+                            Log.e("Profile callback","Callback error");
                         }
                     }
                 }, profileEmail);
@@ -137,6 +142,8 @@ public class ProfilActivity extends AppCompatActivity {
 
         }
         else {
+
+            Log.e("Profile","going home");
             final Intent i;
             i = new Intent(ProfilActivity.this, HomeActivity.class);
             startActivity(i);

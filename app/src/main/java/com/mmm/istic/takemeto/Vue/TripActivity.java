@@ -50,11 +50,23 @@ public class TripActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
         Intent intent = getIntent();
+
+
+        TextView t_numero = (TextView) findViewById(R.id.t_numero);
+        TextView t_nbplacelibre = (TextView) findViewById(R.id.t_nbplacelibre);
+        final TextView t_nom_prenom = (TextView) findViewById(R.id.t_nom_prenom);
+        TextView t_prix = (TextView) findViewById(R.id.t_prix);
+        TextView t_arrival_date = (TextView) findViewById(R.id.t_arrival_date);
+        TextView t_arrival_lieu = (TextView) findViewById(R.id.t_arrival_lieu);
+        TextView t_depart_date = (TextView) findViewById(R.id.t_depart_date);
+        TextView t_depart_lieu = (TextView) findViewById(R.id.t_depart_lieu);
+
         //get the 2 eamil
 
         UserDaoImpl serviceUser = new UserDaoImpl();
         emailCurrentUser = serviceUser.GetUser();
         emailTripUser = intent.getStringExtra("emailUser");
+        Log.e("emailUser","emailUser"+emailTripUser);
         if(emailTripUser == null) {
             Log.e("null emailUser","loadinf keyUser");
             keyTripUser = intent.getStringExtra("keyUser");
@@ -63,11 +75,37 @@ public class TripActivity extends AppCompatActivity {
                 @Override
                 public void callback(User data) {
                     emailTripUser = data.getMail();
+                    Log.e("Setting emailTripUser",""+emailTripUser);
+                    t_nom_prenom.setText(emailTripUser);
+                    //set listener sur le nom pour afficher le profile
+                    TextView showUser = (TextView) findViewById(R.id.t_nom_prenom);
+                    showUser.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(TripActivity.this, ProfilActivity.class);
+                            if (emailCurrentUser.equals(emailTripUser)) {
+                                //Own user account
+                                i.putExtra("requestCode", 0);
+
+                            } else {
+                                //Other user account
+                                i.putExtra("requestCode", 1);
+                                i.putExtra("email", emailTripUser);
+                            }
+                            startActivity(i);
+
+                        }
+
+                    });
                 }
-            },"-"+keyTripUser);
+            },""+keyTripUser);
             Log.e("null emailUser","loadinf keyUser / "+keyTripUser);
         }
-        //set listener sur le nom pour afficher le profile
+        else{
+            t_nom_prenom.setText(emailCurrentUser);
+        }
+
+//set listener sur le nom pour afficher le profile
         TextView showUser = (TextView) findViewById(R.id.t_nom_prenom);
         showUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,31 +119,25 @@ public class TripActivity extends AppCompatActivity {
                     //Other user account
                     i.putExtra("requestCode", 1);
                     i.putExtra("email", emailTripUser);
+
                 }
                 startActivity(i);
 
             }
 
         });
-
         Button button = (Button) findViewById(R.id.t_bouton);
         final Trajet trajet = new Trajet();
         trajet.setDeparture(intent.getStringExtra("departure"));
         trajet.setArrival(intent.getStringExtra("arrival"));
         trajet.setDepartureDate(intent.getStringExtra("departureDate"));
         trajet.setArrivalDate(intent.getStringExtra("arrivalDate"));
-        trajet.setPlaces(intent.getIntExtra("places", 0));
-        trajet.setPrixTrajet(intent.getIntExtra("prixTrajet", 0));
+        int aze = Integer.parseInt(""+intent.getIntExtra("places", 0));
+        trajet.setPlaces(aze);
+        int ert = Integer.parseInt(""+intent.getIntExtra("prixTrajet", 0));
+        trajet.setPrixTrajet(ert);
 
 
-        TextView t_numero = (TextView) findViewById(R.id.t_numero);
-        TextView t_nbplacelibre = (TextView) findViewById(R.id.t_nbplacelibre);
-        final TextView t_nom_prenom = (TextView) findViewById(R.id.t_nom_prenom);
-        TextView t_prix = (TextView) findViewById(R.id.t_prix);
-        TextView t_arrival_date = (TextView) findViewById(R.id.t_arrival_date);
-        TextView t_arrival_lieu = (TextView) findViewById(R.id.t_arrival_lieu);
-        TextView t_depart_date = (TextView) findViewById(R.id.t_depart_date);
-        TextView t_depart_lieu = (TextView) findViewById(R.id.t_depart_lieu);
 
         t_numero.setText("" + trajet.hashCode());
         t_nbplacelibre.setText("" + trajet.getPlaces());
