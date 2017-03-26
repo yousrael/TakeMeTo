@@ -21,6 +21,7 @@ import com.mmm.istic.takemeto.model.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * afficher les informations d'un trajet
@@ -111,7 +112,7 @@ public class TripActivity extends AppCompatActivity {
         t_prix.setText("" + trajet.getPrixTrajet() + "€");
         t_arrival_date.setText(trajet.getArrivalDate());
         t_arrival_lieu.setText(trajet.getArrival());
-        t_depart_date.setText(trajet.getDepartureDate());
+        t_depart_date.setText(trajet.getDepartureDate().split("_")[0]);
         t_depart_lieu.setText(trajet.getDeparture());
 
         serviceUser.findUserbyEmail(new SimpleCallback<User>() {
@@ -131,7 +132,7 @@ public class TripActivity extends AppCompatActivity {
                     //TODO:edit un trip
                     Log.e("qsdqsd", "CLICK edit");
                     //Add the current user to trip passanger list
-                    Map<String, Object> vayageurs = new HashMap();
+                    Map<String, Object> vayageurs = new HashMap<>();
                     databaseReference = FirebaseDatabase.getInstance().getReference("trajets/-Kg4Pwto2HoNaSaKNOmM/vayageurs");
                     String keyVoyageur = databaseReference.push().getKey();
                     vayageurs.put(keyVoyageur, "current user key");
