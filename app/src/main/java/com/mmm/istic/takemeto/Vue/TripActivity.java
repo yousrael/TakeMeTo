@@ -111,7 +111,7 @@ public class TripActivity extends AppCompatActivity {
         t_prix.setText("" + trajet.getPrixTrajet() + "€");
         t_arrival_date.setText(trajet.getArrivalDate());
         t_arrival_lieu.setText(trajet.getArrival());
-        t_depart_date.setText(trajet.getDepartureDate());
+        t_depart_date.setText(trajet.getDepartureDate().split("_")[0]);
         t_depart_lieu.setText(trajet.getDeparture());
 
         serviceUser.findUserbyEmail(new SimpleCallback<User>() {
