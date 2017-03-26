@@ -2,6 +2,7 @@ package com.mmm.istic.takemeto.Vue;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 
 import com.mmm.istic.takemeto.R;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
