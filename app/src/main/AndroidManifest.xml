@@ -20,7 +20,7 @@
         <activity android:name=".Vue.TripActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".Vue.SignInActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".Vue.MyListTripsActivity" android:theme="@style/MyTheme"/>
-        <activity android:name=".Vue.HomeActivity" android:theme="@style/MyTheme" />
+        <activity android:name=".Vue.HomeActivity" android:theme="@style/AppTheme" />
         <activity android:name=".Vue.SearchTripActivity" android:theme="@style/MyTheme" />
         <activity android:name=".Vue.SuggestTripActivity" android:theme="@style/MyTheme"/>
         <activity android:name=".Vue.FormActivity" android:theme="@style/MyTheme" />
