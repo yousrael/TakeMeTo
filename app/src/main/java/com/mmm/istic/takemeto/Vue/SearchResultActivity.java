@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +49,7 @@ public class SearchResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         departureDate = intent.getStringExtra("departureDate");
         arrivalDate = intent.getStringExtra("arrivalDate");
         departure = intent.getStringExtra("departure");
@@ -77,13 +81,50 @@ public class SearchResultActivity extends AppCompatActivity {
                         trajets.put(userSnapshot.getKey(), trajet);
                     }
 
-                    ArrayList<Trajet> values = new ArrayList<>(trajets.values());
-                    List<String> keys = new ArrayList<String>(trajets.keySet());
+                    final ArrayList<Trajet> values = new ArrayList<>(trajets.values());
+
+
+                    int length = values.size();
+                    String[] trajetStrings = new String[length];
+                    for (int i = 0; i < length; i++) {
+                        trajetStrings[i] = values.get(i).getDeparture()+"\n"+values.get(i).getArrival()+"\n"+values.get(i).getDepartureDate().split("_")[0];
+                    }
+
+                    final List<String> keys = new ArrayList<String>(trajets.keySet());
+
                     for (Trajet trajet : values) {
                         Log.d("firebase arrival date ", trajet.getArrivalDate());
                         Log.d("firebase available sits", String.valueOf(trajet.getPlaces()));
                         Log.d("firebase trajet price ", String.valueOf(trajet.getPrixTrajet()));
                     }
+
+                    ListView mListView = (ListView) findViewById(R.id.listView_searchTrip);
+
+                    //android.R.layout.simple_list_item_1 est une vue disponible de base dans le SDK android,
+                    //Contenant une TextView avec comme identifiant "@android:id/text1"
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(SearchResultActivity.this,
+                            android.R.layout.simple_list_item_1, trajetStrings);
+                    mListView.setAdapter(adapter);
+                    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent1=new Intent(SearchResultActivity.this, TripActivity.class);
+                            intent.putExtra("key",keys.get(position));
+                            intent.putExtra("user",values.get(position).getUser());
+                            intent1.putExtra("departure",values.get(position).getDeparture());
+                            intent1.putExtra("arrival",values.get(position).getArrival());
+                            intent1.putExtra("departureDate",values.get(position).getDepartureDate());
+                            intent1.putExtra("arrivalDate",values.get(position).getArrivalDate());
+                            intent1.putExtra("prixTrajet",values.get(position).getPrixTrajet());
+                            intent1.putExtra("places",values.get(position).getPlaces());
+                            Log.e("Item Clicked",keys.get(position));
+                            startActivity(intent1);
+
+
+                        }
+                    });
+
                 }
                 else {
                     Log.e("null user","null user");
