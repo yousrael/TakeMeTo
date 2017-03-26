@@ -9,194 +9,194 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mmm.istic.takemeto.Vue.SuggestTripActivity">
-    <TextView
-        android:text="departure date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="64dp"
-        android:id="@+id/textView6" />
 
-    <TextView
-        android:text="arrival date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView6"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_marginTop="53dp"
-        android:id="@+id/textView7" />
-
-    <TextView
-        android:text="departure place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView7"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7"
-        android:layout_marginTop="56dp"
-        android:id="@+id/textView8" />
-
-    <TextView
-        android:text="arrival place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView8"
-        android:layout_alignLeft="@+id/textView8"
-        android:layout_alignStart="@+id/textView8"
-        android:layout_marginTop="59dp"
-        android:id="@+id/textView9" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:layout_alignTop="@+id/textView6"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/edit_suggest_trip_date_depart"
-        android:hint="Enter your departure date" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:layout_alignTop="@+id/textView7"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/edit_suggest_trip_date_arrivee"
-        android:hint="Enter your arrival date" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignTop="@+id/textView8"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/edit_suggest_trip_depart_place"
-        android:hint="Departure place" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignTop="@+id/textView9"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/edit_suggest_trip_arrival_place"
-        android:hint="Arrival place" />
-
-    <TextView
-        android:text="NbPlacesMax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_suggest_trip_arrival_place"
-        android:layout_alignLeft="@+id/textView9"
-        android:layout_alignStart="@+id/textView9"
-        android:layout_marginTop="12dp"
-        android:id="@+id/textView10" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:layout_alignTop="@+id/textView10"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/editText8"
-        android:hint="Available places" />
-
-    <TextView
-        android:text="Commentaire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText8"
-        android:layout_alignLeft="@+id/textView10"
-        android:layout_alignStart="@+id/textView10"
-        android:layout_marginTop="38dp"
-        android:id="@+id/textView16" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/editText8"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8"
-        android:layout_marginTop="25dp"
-        android:id="@+id/edit_suggest_trip_comment"
-        android:hint="Write a comment" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/edit_suggest_trip_comment">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="Please fill the form below"
+            android:textSize="25dp"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8">
 
-            <TextView
-                android:text="Number of sits"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_suggest_trip_sits" />
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:id="@+id/edit_suggest_trip_sits"
-                android:hint="Enter the number of places available" />
-
-        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:text="Price"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_suggest_trip_price" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="departure date" />
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_date_depart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="Enter your departure date"
+                    android:inputType="date" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:id="@+id/edit_suggest_trip_price"
-                android:hint="Enter a price" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="arrival date" />
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_date_arrivee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="Enter your arrival date"
+                    android:inputType="date" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="departure place" />
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_depart_place"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="Departure place"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="arrival place" />
+
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_arrival_place"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="Arrival place"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_suggest_trip_sits"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Number of sits" />
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_sits"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="Enter a number"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_suggest_trip_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Price" />
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="Enter a price"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Commentaire" />
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:lines="5"
+                    android:minLines="1"
+                    android:maxLines="5"
+                    android:scrollbars="vertical"
+                    android:hint="Write a comment"
+                    android:inputType="textShortMessage" />
+            </LinearLayout>
         </LinearLayout>
-
+        </ScrollView>
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Create" />
     </LinearLayout>
-
-    <Button
-        android:text="Create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/textView8"
-        android:layout_toEndOf="@+id/textView8"
-        android:id="@+id/button7"
-        android:layout_alignParentBottom="true" />
-
-
 </RelativeLayout>

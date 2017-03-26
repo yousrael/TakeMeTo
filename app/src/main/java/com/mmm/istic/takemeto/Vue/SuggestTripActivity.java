@@ -29,7 +29,7 @@ public class SuggestTripActivity extends AppCompatActivity {
     private EditText arrivalDate;
     private EditText departure;
     private EditText arrival;
-    private EditText places ;
+    private EditText places;
     private EditText prixTrajet;
 
     @Override
@@ -48,12 +48,12 @@ public class SuggestTripActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("trajets");
 
-        Button create=(Button) findViewById(R.id.button7);
+        Button create = (Button) findViewById(R.id.button7);
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addNewTrajet(); //Adding new trajet on the database
-                Intent i=new Intent(SuggestTripActivity.this,MyListTripsActivity.class);
+                Intent i = new Intent(SuggestTripActivity.this, MyListTripsActivity.class);
                 startActivity(i);
 
             }
@@ -63,11 +63,11 @@ public class SuggestTripActivity extends AppCompatActivity {
     private void addNewTrajet() {
 
         ArrayList<String> voyageurs = new ArrayList<>();
+        String key = databaseReference.push().getKey();
         voyageurs.add("KfobKb7oMRm1JMQvl8L");
-        String key = databaseReference.push().getKey(); //generating a key
         databaseReference.child(key).setValue(new Trajet("KfobKb7oMRm1JMQvl8L",
-                departureDate.getText().toString()+"_"+departure.getText().toString()+"_"+arrival.getText().toString(),
-                arrivalDate.getText().toString() ,
+                departureDate.getText().toString() + "_" + departure.getText().toString() + "_" + arrival.getText().toString(),
+                arrivalDate.getText().toString(),
                 departure.getText().toString(),
                 arrival.getText().toString(),
                 Integer.valueOf(places.getText().toString()),
