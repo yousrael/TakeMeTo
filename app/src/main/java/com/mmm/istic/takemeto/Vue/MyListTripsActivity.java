@@ -63,7 +63,7 @@ public class MyListTripsActivity extends AppCompatActivity {
                 if (data != null) {
                     userbase = data;
                     TextView welcome = (TextView) findViewById(R.id.textView5);
-                    welcome.setText("Welcome  "+userbase.getNom() + "  " + userbase.getPrenom());
+                    welcome.setText("Welcome  " + userbase.getNom() + "  " + userbase.getPrenom());
                 } else {
                     Log.e("Error", "Error in getting user");
                 }
@@ -94,26 +94,11 @@ public class MyListTripsActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.getValue() != null) {
                                 Map<String, Trajet> trajets = new HashMap<String, Trajet>();
-                                List<Trajet> list = new ArrayList<Trajet>();
-                               /*Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
-                                while(iterator.hasNext()){
-                                    Trajet trajet = (Trajet) iterator.next().getValue();
-                                  //  Log.d("test class name : ", userSnapshot.getArrival());
-                                    list.add((iterator.next().getValue(Trajet.class)));
-                                }*/
+
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                                    Iterator<DataSnapshot> iterator = userSnapshot.getChildren().iterator();
-                                    while(iterator.hasNext()){
-                                        Trajet trajet = (iterator.next()).getValue(Trajet.class);
-                                        //  Log.d("test class name : ", userSnapshot.getArrival());
-                                        list.add((iterator.next().getValue(Trajet.class)));
-                                    }
-                                    //Log.d("test class name : ",trajet1.getArrival());
 
-
-                                    //Trajet trajet = userSnapshot.getValue(Trajet.class);
-                                   // trajets.put(userSnapshot.getKey(), trajet);
-                                   // trajets.put(userSnapshot.getKey(), userSnapshot);
+                                    Trajet trajet = userSnapshot.getValue(Trajet.class);
+                                    trajets.put(userSnapshot.getKey(), trajet);
 
                                 }
 
@@ -121,22 +106,16 @@ public class MyListTripsActivity extends AppCompatActivity {
                                 values = new ArrayList<>(trajets.values());
                                 for (int i = 0; i < values.size(); i++) {
 
-                                    /*map = new HashMap<String, String>();
+                                    map = new HashMap<String, String>();
                                     map.put("departure", values.get(i).getDeparture() + "  ");
                                     map.put("arrival", values.get(i).getArrival() + "  ");
                                     map.put("departureDate", values.get(i).getDepartureDate() + "  ");
-                                    map.put("arrivalDate", values.get(i).getArrivalDate());*/
-                                    map = new HashMap<String, String>();
-                                    map.put("departure", list.get(i).getDeparture() + "  ");
-                                    map.put("arrival", list.get(i).getArrival() + "  ");
-                                    map.put("departureDate", list.get(i).getDepartureDate() + "  ");
-                                    map.put("arrivalDate", list.get(i).getArrivalDate());
-                                    mapItems.add(map);
+                                    map.put("arrivalDate", values.get(i).getArrivalDate());
                                 }
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
                                 mlistAdapter = new SimpleAdapter(getBaseContext(), mapItems, R.layout.item,
-                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate","places","prixTrajet"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4,R.id.textView5,R.id.textView6});
+                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate", "places", "prixTrajet"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6});
                                 //ici on affecte l'adapteur pour la listView afin de la remplir avec les elemets de item
                                 malistView.setAdapter(mlistAdapter);
 
@@ -150,8 +129,6 @@ public class MyListTripsActivity extends AppCompatActivity {
                             Log.d("get List trajets", "Failure");
                         }
                     });
-
-
 
 
                 } else {
@@ -181,17 +158,16 @@ public class MyListTripsActivity extends AppCompatActivity {
 
 
                                 values = new ArrayList<>(trajets.values());
-                                for(Trajet trajet : values){
+                                for (Trajet trajet : values) {
 
-                                    for(String voyageur : trajet.getVayageurs()){
-                                        if(voyageur.equals(keyUser)){
+                                    for (String voyageur : trajet.getVayageurs()) {
+                                        if (voyageur.equals(keyUser)) {
                                             mapReservation = new HashMap<String, String>();
                                             mapReservation.put("departure", trajet.getDeparture() + "  ");
                                             mapReservation.put("arrival", trajet.getArrival() + "  ");
                                             mapReservation.put("departureDate", trajet.getDepartureDate() + "  ");
                                             mapReservation.put("arrivalDate", trajet.getArrivalDate());
-                                           trajet.getUser();
-                                            User user
+                                            mapReservation.put("user", trajet.getUser());
                                             mapItemsReservation.add(mapReservation);
                                         }
                                     }
@@ -211,7 +187,7 @@ public class MyListTripsActivity extends AppCompatActivity {
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
                                 mlistAdapter = new SimpleAdapter(getBaseContext(), mapItemsReservation, R.layout.item,
-                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate","places","prixTrajet"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4,R.id.textView5,R.id.textView6});
+                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate", "places", "prixTrajet","user"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6,R.id.textView17});
                                 //ici on affecte l'adapteur pour la listView afin de la remplir avec les elemets de item
                                 malistViewReservations.setAdapter(mlistAdapter);
 
@@ -225,8 +201,6 @@ public class MyListTripsActivity extends AppCompatActivity {
                             Log.d("get List trajets", "Failure");
                         }
                     });
-
-
 
 
                 } else {
@@ -245,13 +219,13 @@ public class MyListTripsActivity extends AppCompatActivity {
                 String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString();
                 String places = ((TextView) view.findViewById(R.id.textView5)).getText().toString();
                 String prixTrajet = ((TextView) view.findViewById(R.id.textView6)).getText().toString();
-                 intent.putExtra("departure",departure);
-                intent.putExtra("arrival",arrival);
-                intent.putExtra("departureDate",departureDate);
-                intent.putExtra("arrivalDate",arrivalDate);
-                intent.putExtra("places",places);
-                intent.putExtra("prixTrajet",prixTrajet);
-                intent.putExtra("emailUser",email);
+                intent.putExtra("departure", departure);
+                intent.putExtra("arrival", arrival);
+                intent.putExtra("departureDate", departureDate);
+                intent.putExtra("arrivalDate", arrivalDate);
+                intent.putExtra("places", places);
+                intent.putExtra("prixTrajet", prixTrajet);
+                intent.putExtra("emailUser", email);
                 startActivity(intent);
             }
         });
@@ -267,19 +241,17 @@ public class MyListTripsActivity extends AppCompatActivity {
                 String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString();
                 String places = ((TextView) view.findViewById(R.id.textView5)).getText().toString();
                 String prixTrajet = ((TextView) view.findViewById(R.id.textView6)).getText().toString();
-                intent.putExtra("departure",departure);
-                intent.putExtra("arrival",arrival);
-                intent.putExtra("departureDate",departureDate);
-                intent.putExtra("arrivalDate",arrivalDate);
-                intent.putExtra("places",places);
-                intent.putExtra("prixTrajet",prixTrajet);
-                intent.putExtra("emailUser",email);
+                String keyUser = ((TextView) view.findViewById(R.id.textView17)).getText().toString();
+                intent.putExtra("departure", departure);
+                intent.putExtra("arrival", arrival);
+                intent.putExtra("departureDate", departureDate);
+                intent.putExtra("arrivalDate", arrivalDate);
+                intent.putExtra("places", places);
+                intent.putExtra("prixTrajet", prixTrajet);
+                intent.putExtra("keyUser", keyUser);
                 startActivity(intent);
             }
         });
-
-
-
 
 
     }
