@@ -11,9 +11,27 @@ public class User {
     private String id;
     private String nom;
     private String prenom;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     private String mail ;
     private String phone ;
     private String dateDeNaissance;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getNom() {
         return nom;
@@ -59,12 +77,13 @@ public class User {
     private ArrayList<Trajet> reservations ;
 
     public User () {}
-    public User(String nom, String prenom, String mail, String phone, String date) {
+    public User(String nom, String prenom, String mail, String phone, String date,String image) {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
         this.phone = phone;
         this.dateDeNaissance = date;
+        this.image=image;
     }
 
 
