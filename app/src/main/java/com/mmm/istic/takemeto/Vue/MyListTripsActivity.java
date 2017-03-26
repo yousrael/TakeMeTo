@@ -95,19 +95,24 @@ public class MyListTripsActivity extends AppCompatActivity {
                             if (dataSnapshot.getValue() != null) {
                                 Map<String, Trajet> trajets = new HashMap<String, Trajet>();
                                 List<Trajet> list = new ArrayList<Trajet>();
-                               Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                               /*Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
                                 while(iterator.hasNext()){
                                     Trajet trajet = (Trajet) iterator.next().getValue();
                                   //  Log.d("test class name : ", userSnapshot.getArrival());
                                     list.add((iterator.next().getValue(Trajet.class)));
-                                }
+                                }*/
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                                    Trajet trajet1 = (Trajet) userSnapshot.getValue();
-                                    Log.d("test class name : ",trajet1.getArrival());
+                                    Iterator<DataSnapshot> iterator = userSnapshot.getChildren().iterator();
+                                    while(iterator.hasNext()){
+                                        Trajet trajet = (iterator.next()).getValue(Trajet.class);
+                                        //  Log.d("test class name : ", userSnapshot.getArrival());
+                                        list.add((iterator.next().getValue(Trajet.class)));
+                                    }
+                                    //Log.d("test class name : ",trajet1.getArrival());
 
 
-                                    /*Trajet trajet = userSnapshot.getValue(Trajet.class);
-                                    trajets.put(userSnapshot.getKey(), trajet);*/
+                                    //Trajet trajet = userSnapshot.getValue(Trajet.class);
+                                   // trajets.put(userSnapshot.getKey(), trajet);
                                    // trajets.put(userSnapshot.getKey(), userSnapshot);
 
                                 }
