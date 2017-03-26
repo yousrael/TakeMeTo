@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyTheme" parent="@android:style/Theme.Light">
+        <item name="android:windowBackground">@drawable/covoiturage</item>
+    </style>
+
 </resources>

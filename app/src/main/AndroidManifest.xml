@@ -7,7 +7,7 @@
         android:icon="@mipmap/takemeto_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MyTheme">
         <activity android:name=".Vue.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -15,16 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Vue.ProfilActivity" />
-        <activity android:name=".Vue.SearchResultActivity" />
-        <activity android:name=".Vue.TripActivity" />
-        <activity android:name=".Vue.SignInActivity" />
-        <activity android:name=".Vue.MyListTripsActivity" />
-        <activity android:name=".Vue.HomeActivity" />
-        <activity android:name=".Vue.SearchTripActivity" />
-        <activity android:name=".Vue.SuggestTripActivity" />
-        <activity android:name=".Vue.FormActivity" />
-        <activity android:name=".Vue.SettingsActivity"></activity>
+        <activity android:name=".Vue.ProfilActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".Vue.SearchResultActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".Vue.TripActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".Vue.SignInActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".Vue.MyListTripsActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".Vue.HomeActivity" android:theme="@style/MyTheme" />
+        <activity android:name=".Vue.SearchTripActivity" android:theme="@style/MyTheme" />
+        <activity android:name=".Vue.SuggestTripActivity" android:theme="@style/MyTheme"/>
+        <activity android:name=".Vue.FormActivity" android:theme="@style/MyTheme" />
     </application>
 
 </manifest>

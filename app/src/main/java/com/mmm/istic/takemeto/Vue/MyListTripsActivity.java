@@ -104,14 +104,30 @@ public class MyListTripsActivity extends AppCompatActivity {
 
 
                                 values = new ArrayList<>(trajets.values());
-                                for (int i = 0; i < values.size(); i++) {
+                                for (Trajet trajet : values) {
+
+                                    for (Map.Entry voyageur : trajet.getVayageurs().entrySet()) {
+                                        if (voyageur.getValue().equals(keyUser)) {
+                                            map = new HashMap<String, String>();
+                                            map.put("departure", trajet.getDeparture() + "  ");
+                                            map.put("arrival", trajet.getArrival() + "  ");
+                                            map.put("departureDate", trajet.getDepartureDate() + "  ");
+                                            map.put("arrivalDate", trajet.getArrivalDate());
+                                            map.put("user", trajet.getUser());
+                                            mapItems.add(map);
+                                        }
+                                    }
+                                }
+                                /*for (int i = 0; i < values.size(); i++) {
 
                                     map = new HashMap<String, String>();
                                     map.put("departure", values.get(i).getDeparture() + "  ");
                                     map.put("arrival", values.get(i).getArrival() + "  ");
                                     map.put("departureDate", values.get(i).getDepartureDate() + "  ");
                                     map.put("arrivalDate", values.get(i).getArrivalDate());
-                                }
+                                    mapItems.add(map);
+                                }*/
+
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
                                 mlistAdapter = new SimpleAdapter(getBaseContext(), mapItems, R.layout.item,
@@ -187,7 +203,7 @@ public class MyListTripsActivity extends AppCompatActivity {
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
                                 mlistAdapter = new SimpleAdapter(getBaseContext(), mapItemsReservation, R.layout.item,
-                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate", "places", "prixTrajet","user"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6,R.id.textView17});
+                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate", "places", "prixTrajet", "user"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6, R.id.textView17});
                                 //ici on affecte l'adapteur pour la listView afin de la remplir avec les elemets de item
                                 malistViewReservations.setAdapter(mlistAdapter);
 
@@ -215,10 +231,11 @@ public class MyListTripsActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyListTripsActivity.this, TripActivity.class);
                 String departure = ((TextView) view.findViewById(R.id.textView1)).getText().toString();
                 String arrival = ((TextView) view.findViewById(R.id.textView2)).getText().toString();
-                String departureDate = ((TextView) view.findViewById(R.id.textView3)).getText().toString();
-                String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString();
+                String departureDate = ((TextView) view.findViewById(R.id.textView3)).getText().toString().split("_")[0];
+                String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString().split("_")[0];
                 String places = ((TextView) view.findViewById(R.id.textView5)).getText().toString();
                 String prixTrajet = ((TextView) view.findViewById(R.id.textView6)).getText().toString();
+
                 intent.putExtra("departure", departure);
                 intent.putExtra("arrival", arrival);
                 intent.putExtra("departureDate", departureDate);
@@ -230,7 +247,7 @@ public class MyListTripsActivity extends AppCompatActivity {
             }
         });
 
-        malistViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* malistViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
@@ -251,7 +268,7 @@ public class MyListTripsActivity extends AppCompatActivity {
                 intent.putExtra("keyUser", keyUser);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
     }

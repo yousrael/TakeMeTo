@@ -5,6 +5,6 @@
         android:title="Trips"/>
     <item android:id="@+id/profil"
         android:title="My profil" />
-    <item android:id="@+id/settings"
-        android:title="Settings" />
+    <item android:id="@+id/suggestions"
+        android:title="Suggestions" />
 </menu>

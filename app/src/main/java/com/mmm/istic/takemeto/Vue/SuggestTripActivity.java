@@ -1,10 +1,12 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,9 +16,12 @@ import com.mmm.istic.takemeto.R;
 import com.mmm.istic.takemeto.model.Trajet;
 import com.mmm.istic.takemeto.model.User;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -34,6 +39,15 @@ public class SuggestTripActivity extends AppCompatActivity {
     private EditText prixTrajet;
     private EditText heureDepart;
     private EditText heureArrivee;
+
+
+
+    //For the DatePicker dialog
+    Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener dated;
+    DatePickerDialog.OnDateSetListener datea;
+    boolean datedb=false;
+    boolean dateab=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +75,61 @@ public class SuggestTripActivity extends AppCompatActivity {
 
             }
         });
+
+        //Dialog to select a date, see also updateDateDeNaissance() at the bottom
+        datea = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDateArrival();
+            }
+
+        };
+        dated = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDatedeparture();
+            }
+
+        };
+        arrivalDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!dateab) {
+                    new DatePickerDialog(SuggestTripActivity.this, datea, myCalendar
+                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                }
+                dateab = !dateab;
+            }
+        });
+
+
+        departureDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!datedb) {
+
+                    new DatePickerDialog(SuggestTripActivity.this, dated, myCalendar
+                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                }
+                datedb = !datedb;
+            }
+        });
+        //end date dialog
+
     }
 
     private void addNewTrajet() {
@@ -68,7 +137,7 @@ public class SuggestTripActivity extends AppCompatActivity {
         Map<String, Object> voyageurs = new HashMap<>();
         String key = databaseReference.push().getKey();
         String keyvoyageur = databaseReference.child("vayageurs").push().getKey();
-        voyageurs.put(keyvoyageur, "-KfobKb7oMRm1JMQvl8L");
+        voyageurs.put(keyvoyageur, "-KfomENAAWwVaEGxPKIC");
         databaseReference.child(key).setValue(new Trajet("-KfobKb7oMRm1JMQvl8L",
                 departureDate.getText().toString() + "_" + departure.getText().toString() + "_" + arrival.getText().toString(),
                 arrivalDate.getText().toString(),
@@ -77,5 +146,19 @@ public class SuggestTripActivity extends AppCompatActivity {
                 Integer.valueOf(places.getText().toString()),
                 Integer.valueOf(prixTrajet.getText().toString()),
                 voyageurs));
+    }
+
+    //Updating the after selectining it from the dialog
+    private void updateDatedeparture() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+
+        departureDate.setText(sdf.format(myCalendar.getTime()));
+    }
+    private void updateDateArrival() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+
+        arrivalDate.setText(sdf.format(myCalendar.getTime()));
     }
 }
