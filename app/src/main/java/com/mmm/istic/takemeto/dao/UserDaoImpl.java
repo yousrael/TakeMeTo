@@ -136,6 +136,56 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void findUserbyKey(@NonNull final SimpleCallback<User> finishedCallback, String key) {
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        Query query = databaseReference.orderByKey().equalTo(key);
+        //Id d'un objet de la BD pour test : "-KfobKb7oMRm1JMQvl8L", a pares "users" ci-dessus précèder d'un "/"
+        //databaseReference = FirebaseDatabase.getInstance().getReference("users/"+id);
+        Log.e("db ref",databaseReference.toString());
+
+        // query= databaseReference.getRef();
+        //Log.d("query", query.getRef().toString());
+        //query= databaseReference.getRef();
+        ArrayList<User> user = null;
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                /// for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                if(dataSnapshot.getValue() != null){
+                    Map<String, User> users = new HashMap<String, User>();
+                    for (DataSnapshot jobSnapshot: dataSnapshot.getChildren()) {
+                        User user = jobSnapshot.getValue(User.class);
+                        users.put(jobSnapshot.getKey(), user);
+                    }
+
+                    foundUsers = new ArrayList<>(users.values());
+                    List<String> keys = new ArrayList<String>(users.keySet());
+                    for (User user: foundUsers) {
+                        Log.d("firebase user find :",user.getMail());
+                    }
+                    if(foundUsers.size() ==1)
+                        finishedCallback.callback(foundUsers.get(0));
+                    else
+                        finishedCallback.callback(null);
+                        /*Log.d("class name of user ", dataSnapshot.getValue().getClass().getName());
+                        Log.d("real user ", dataSnapshot.getValue(User.class).getClass().getName());
+                        Log.e("get User by email","SUCCESS"+dataSnapshot.getValue(User.class));*/
+                    //Log.e("get User by email","SUCCESS"+user.getNom());
+                }
+                else {
+                    Log.e("null user","null user");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d("get User by email","Failure");
+            }
+        });
+    }
+
+    @Override
     public String GetUser() {
         String email=null;
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
