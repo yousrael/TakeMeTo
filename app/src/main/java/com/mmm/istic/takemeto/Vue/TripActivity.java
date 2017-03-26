@@ -199,6 +199,7 @@ public class TripActivity extends AppCompatActivity {
                     Map<String, Object> vayageurs = new HashMap<>();
                     final String[] currentUserKey = new String[1];
                     databaseReference = FirebaseDatabase.getInstance().getReference("trajets/"+key+"/vayageurs");
+                    Log.e("keyAAA---------------->",key);
                     String keyVoyageur = databaseReference.push().getKey();
 
                     usrDao.findUserbyEmail(new SimpleCallback<User>() {
