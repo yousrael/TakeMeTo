@@ -219,6 +219,7 @@ public class MyListTripsActivity extends AppCompatActivity {
                 String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString();
                 String places = ((TextView) view.findViewById(R.id.textView5)).getText().toString();
                 String prixTrajet = ((TextView) view.findViewById(R.id.textView6)).getText().toString();
+
                 intent.putExtra("departure", departure);
                 intent.putExtra("arrival", arrival);
                 intent.putExtra("departureDate", departureDate);

@@ -30,7 +30,7 @@ import static android.content.ContentValues.TAG;
  */
 public class TrajetDaoImpl implements TrajetDao {
 
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference ;
 
     private FirebaseAuth firebaseAuth;
     private ArrayList<Trajet> foundTrajets;
@@ -78,6 +78,12 @@ public class TrajetDaoImpl implements TrajetDao {
                 Log.d("get Trajet by key","Failure");
             }
         });
+    }
+
+    @Override
+    public void addPassenger(String passenger) {
+        databaseReference = FirebaseDatabase.getInstance().getReference("voyageurs");
+        databaseReference.setValue("");
     }
 
 }
