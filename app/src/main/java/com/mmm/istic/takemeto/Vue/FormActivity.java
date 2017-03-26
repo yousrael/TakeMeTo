@@ -44,7 +44,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class FormActivity extends Activity {
+public class FormActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -76,6 +76,7 @@ public class FormActivity extends Activity {
         createuser = (Button) findViewById(R.id.CreateNewUser);
         TextView textview1 = (TextView) findViewById(R.id.textView6);
         TextView textview2 = (TextView) findViewById(R.id.textView7);
+        Button takeImage= (Button) findViewById(R.id.takeimage);
 
         email = (EditText) findViewById(R.id.edit_suggest_trip_date_arrivee);
         password = (EditText) findViewById(R.id.edit_suggest_trip_arrival_place);
@@ -133,7 +134,34 @@ public class FormActivity extends Activity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
+   takeImage.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
 
+           final CharSequence[] items = { "Take Photo", "Choose from Library",
+                   "Cancel" };
+           AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
+           builder.setTitle("Add Photo!");
+           builder.setItems(items, new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialog, int item) {
+                   boolean result=Utility.checkPermission(FormActivity.this);
+                   if (items[item].equals("Take Photo")) {
+                       userChoosenTask="Take Photo";
+                       if(result)
+                           cameraIntent();
+                   } else if (items[item].equals("Choose from Library")) {
+                       userChoosenTask="Choose from Library";
+                       if(result)
+                           galleryIntent();
+                   } else if (items[item].equals("Cancel")) {
+                       dialog.dismiss();
+                   }
+               }
+           });
+           builder.show();
+       }
+   });
 
 
     }
@@ -183,7 +211,7 @@ public class FormActivity extends Activity {
     }
 
     //Choose profil image
-    public void chooseProfilImage(View view) {
+   /* public void chooseProfilImage(View view) {
 
         final CharSequence[] items = { "Take Photo", "Choose from Library",
                 "Cancel" };
@@ -208,7 +236,7 @@ public class FormActivity extends Activity {
         });
         builder.show();
 
-    }
+    }*/
 
     private void cameraIntent()
     {
