@@ -10,6 +10,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,6 +52,7 @@ public class ProfilActivity extends AppCompatActivity {
     TextView p_email;
     TextView p_birthdate;
     TextView p_phone;
+    ImageView image;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     String email;
@@ -64,12 +66,8 @@ public class ProfilActivity extends AppCompatActivity {
          p_email = (TextView) findViewById(R.id.p_email);
          p_birthdate  = (TextView) findViewById(R.id.p_birthdate);
          p_phone  = (TextView) findViewById(R.id.p_phone);
-        Bitmap bmp =  BitmapFactory.decodeResource(getResources(), R.id.imageView);//your image
-        ByteArrayOutputStream bYtE = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, bYtE);
-        bmp.recycle();
-        byte[] byteArray = bYtE.toByteArray();
-        String imageFile = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        image= (ImageView) findViewById(R.id.imageView);
+
 
         Button button = (Button)findViewById(R.id.button1);
         button.setVisibility(View.VISIBLE);
@@ -87,11 +85,14 @@ public class ProfilActivity extends AppCompatActivity {
                 @Override
                 public void callback(User data) {
                     if (data != null) {
+                        byte [] encodeByte=Base64.decode(data.getImage(),Base64.DEFAULT);
+                        Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
                     p_nom.setText(data.getNom());
                         p_prenom.setText(data.getPrenom());
                         p_birthdate.setText(data.getDateDeNaissance());
                         p_email.setText(data.getMail());
                         p_phone.setText(data.getPhone());
+                        image.setImageBitmap(bitmap);
 
                     } else {
                         // error
@@ -117,11 +118,14 @@ public class ProfilActivity extends AppCompatActivity {
                     @Override
                     public void callback(User data) {
                         if (data != null) {
+                            byte [] encodeByte=Base64.decode(data.getImage(),Base64.DEFAULT);
+                            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
                             p_nom.setText(data.getNom());
                             p_prenom.setText(data.getPrenom());
                             p_birthdate.setText(data.getDateDeNaissance());
                             p_email.setText(data.getMail());
                             p_phone.setText(data.getPhone());
+                            image.setImageBitmap(bitmap);
 
                         } else {
                             // error
