@@ -87,6 +87,7 @@ public class MyListTripsActivity extends Activity {
             public void callback(String data) {
                 if (data != null) {
                     keyUser = data;
+                    Log.d("current user key : ", data);
                     Query querytrajets = databaseReference.orderByChild("user").equalTo(keyUser);
 
 
@@ -105,7 +106,7 @@ public class MyListTripsActivity extends Activity {
 
 
                                 values = new ArrayList<>(trajets.values());
-                                for (Trajet trajet : values) {
+                               /* for (Trajet trajet : values) {
 
                                     for (Map.Entry voyageur : trajet.getVayageurs().entrySet()) {
                                         if (voyageur.getValue().equals(keyUser)) {
@@ -118,8 +119,8 @@ public class MyListTripsActivity extends Activity {
                                             mapItems.add(map);
                                         }
                                     }
-                                }
-                                /*for (int i = 0; i < values.size(); i++) {
+                                }*/
+                                for (int i = 0; i < values.size(); i++) {
 
                                     map = new HashMap<String, String>();
                                     map.put("departure", values.get(i).getDeparture() + "  ");
@@ -127,7 +128,7 @@ public class MyListTripsActivity extends Activity {
                                     map.put("departureDate", values.get(i).getDepartureDate() + "  ");
                                     map.put("arrivalDate", values.get(i).getArrivalDate());
                                     mapItems.add(map);
-                                }*/
+                                }
 
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
@@ -189,18 +190,18 @@ public class MyListTripsActivity extends Activity {
                                         }
                                     }
                                 }
-//                                for (int i = 0; i < values.size(); i++) {
-//                                    for (int j = 0; j < values.get(i).getVayageurs().size(); j++) {
-//                                        if (values.get(i).getVayageurs().get(j) == keyUser) {
-//                                            mapReservation = new HashMap<String, String>();
-//                                            mapReservation.put("departure", values.get(i).getDeparture() + "  ");
-//                                            mapReservation.put("arrival", values.get(i).getArrival() + "  ");
-//                                            mapReservation.put("departureDate", values.get(i).getDepartureDate() + "  ");
-//                                            mapReservation.put("arrivalDate", values.get(i).getArrivalDate());
-//                                            mapReservationItemsReservation.add(mapReservation);
-//                                        }
-//                                    }
-//                                }
+/*                                for (int i = 0; i < values.size(); i++) {
+                                    for (int j = 0; j < values.get(i).getVayageurs().size(); j++) {
+                                        if (values.get(i).getVayageurs().get(j) == keyUser) {
+                                            mapReservation = new HashMap<String, String>();
+                                            mapReservation.put("departure", values.get(i).getDeparture() + "  ");
+                                            mapReservation.put("arrival", values.get(i).getArrival() + "  ");
+                                            mapReservation.put("departureDate", values.get(i).getDepartureDate() + "  ");
+                                            mapReservation.put("arrivalDate", values.get(i).getArrivalDate());
+                                            mapItemsReservation.add(mapReservation);
+                                        }
+                                    }
+                                }*/
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
                                 mlistAdapter = new SimpleAdapter(getBaseContext(), mapItemsReservation, R.layout.item,
@@ -248,7 +249,7 @@ public class MyListTripsActivity extends Activity {
             }
         });
 
-       /* malistViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        malistViewReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
@@ -269,7 +270,7 @@ public class MyListTripsActivity extends Activity {
                 intent.putExtra("keyUser", keyUser);
                 startActivity(intent);
             }
-        });*/
+        });
 
 
     }
