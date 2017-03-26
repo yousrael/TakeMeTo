@@ -190,6 +190,8 @@ public class MyListTripsActivity extends AppCompatActivity {
                                             mapReservation.put("arrival", trajet.getArrival() + "  ");
                                             mapReservation.put("departureDate", trajet.getDepartureDate() + "  ");
                                             mapReservation.put("arrivalDate", trajet.getArrivalDate());
+                                           trajet.getUser();
+                                            User user
                                             mapItemsReservation.add(mapReservation);
                                         }
                                     }
