@@ -31,7 +31,7 @@
     <ImageView
         android:layout_width="155dp"
         android:layout_height="83dp"
-        app:srcCompat="@mipmap/ic_launcher"
+        android:src="@drawable/silhouette"
         android:id="@+id/imageView2" />
 
     <LinearLayout
