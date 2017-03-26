@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class SuggestTripActivity extends AppCompatActivity {
 
@@ -31,6 +32,8 @@ public class SuggestTripActivity extends AppCompatActivity {
     private EditText arrival;
     private EditText places;
     private EditText prixTrajet;
+    private EditText heureDepart;
+    private EditText heureArrivee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +65,11 @@ public class SuggestTripActivity extends AppCompatActivity {
 
     private void addNewTrajet() {
 
-        ArrayList<String> voyageurs = new ArrayList<>();
+        Map<String, Object> voyageurs = new HashMap<>();
         String key = databaseReference.push().getKey();
-        voyageurs.add("KfobKb7oMRm1JMQvl8L");
-        databaseReference.child(key).setValue(new Trajet("KfobKb7oMRm1JMQvl8L",
+        String keyvoyageur = databaseReference.child("vayageurs").push().getKey();
+        voyageurs.put(keyvoyageur, "-KfobKb7oMRm1JMQvl8L");
+        databaseReference.child(key).setValue(new Trajet("-KfobKb7oMRm1JMQvl8L",
                 departureDate.getText().toString() + "_" + departure.getText().toString() + "_" + arrival.getText().toString(),
                 arrivalDate.getText().toString(),
                 departure.getText().toString(),

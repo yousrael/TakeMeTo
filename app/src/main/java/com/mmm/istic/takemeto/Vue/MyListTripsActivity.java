@@ -160,8 +160,8 @@ public class MyListTripsActivity extends AppCompatActivity {
                                 values = new ArrayList<>(trajets.values());
                                 for (Trajet trajet : values) {
 
-                                    for (String voyageur : trajet.getVayageurs()) {
-                                        if (voyageur.equals(keyUser)) {
+                                    for (Map.Entry voyageur : trajet.getVayageurs().entrySet()) {
+                                        if (voyageur.getValue().equals(keyUser)) {
                                             mapReservation = new HashMap<String, String>();
                                             mapReservation.put("departure", trajet.getDeparture() + "  ");
                                             mapReservation.put("arrival", trajet.getArrival() + "  ");
