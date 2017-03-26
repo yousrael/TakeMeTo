@@ -29,5 +29,6 @@ public interface TrajetDao {
 //    public List<Trajet> findAll();
     public void findUserbyKey(@NonNull SimpleCallback<Trajet> finishedCallback, String key);
 
+    public void addPassenger(String passenger);
 
 }

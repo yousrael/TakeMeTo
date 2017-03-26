@@ -160,8 +160,8 @@ public class MyListTripsActivity extends AppCompatActivity {
                                 values = new ArrayList<>(trajets.values());
                                 for (Trajet trajet : values) {
 
-                                    for (String voyageur : trajet.getVayageurs()) {
-                                        if (voyageur.equals(keyUser)) {
+                                    for (Map.Entry voyageur : trajet.getVayageurs().entrySet()) {
+                                        if (voyageur.getValue().equals(keyUser)) {
                                             mapReservation = new HashMap<String, String>();
                                             mapReservation.put("departure", trajet.getDeparture() + "  ");
                                             mapReservation.put("arrival", trajet.getArrival() + "  ");
@@ -219,6 +219,7 @@ public class MyListTripsActivity extends AppCompatActivity {
                 String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString();
                 String places = ((TextView) view.findViewById(R.id.textView5)).getText().toString();
                 String prixTrajet = ((TextView) view.findViewById(R.id.textView6)).getText().toString();
+
                 intent.putExtra("departure", departure);
                 intent.putExtra("arrival", arrival);
                 intent.putExtra("departureDate", departureDate);
