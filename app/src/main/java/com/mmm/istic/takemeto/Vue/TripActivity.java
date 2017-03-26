@@ -173,7 +173,8 @@ public class TripActivity extends AppCompatActivity {
                     Log.e("qsdqsd", "CLICK edit");
                     //Add the current user to trip passanger list
                     Map<String, Object> vayageurs = new HashMap<>();
-                    databaseReference = FirebaseDatabase.getInstance().getReference("trajets/-KfomENAAWwVaEGxPKIC/vayageurs");
+
+                    databaseReference = FirebaseDatabase.getInstance().getReference("trajets/-Kg4Pwto2HoNaSaKNOmM/vayageurs");
                     String keyVoyageur = databaseReference.push().getKey();
 
                     vayageurs.put(keyVoyageur, "current user key");
@@ -198,7 +199,8 @@ public class TripActivity extends AppCompatActivity {
                     Map<String, Object> vayageurs = new HashMap<>();
                     final String[] currentUserKey = new String[1];
                     databaseReference = FirebaseDatabase.getInstance().getReference("trajets/"+key+"/vayageurs");
-                    Log.e("key ---------------->",  key);
+
+                    Log.e("keyAAA---------------->",key);
                     String keyVoyageur = databaseReference.push().getKey();
 
                     usrDao.findUserbyEmail(new SimpleCallback<User>() {
