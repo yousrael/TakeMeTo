@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -162,7 +163,8 @@ public class FormActivity extends AppCompatActivity {
 
     private void addNewUser() {
         String key = databaseReference.push().getKey(); //generating a key
-        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.id.imageView2);
+       // Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.id.imageView2);
+        Bitmap largeIcon=  ((BitmapDrawable) image.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
        largeIcon.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte[] byteFormat = stream.toByteArray();

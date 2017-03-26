@@ -11,6 +11,15 @@ public class User {
     private String id;
     private String nom;
     private String prenom;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     private String mail ;
     private String phone ;
     private String dateDeNaissance;
