@@ -137,6 +137,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void findUserbyKey(@NonNull final SimpleCallback<User> finishedCallback, String key) {
+        Log.e("UserDao","looking for user with key: "+key);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         Query query = databaseReference.orderByKey().equalTo(key);
         //Id d'un objet de la BD pour test : "-KfobKb7oMRm1JMQvl8L", a pares "users" ci-dessus précèder d'un "/"
