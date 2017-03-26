@@ -27,6 +27,7 @@ import com.mmm.istic.takemeto.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -93,21 +94,43 @@ public class MyListTripsActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.getValue() != null) {
                                 Map<String, Trajet> trajets = new HashMap<String, Trajet>();
+                                List<Trajet> list = new ArrayList<Trajet>();
+                               /*Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                                while(iterator.hasNext()){
+                                    Trajet trajet = (Trajet) iterator.next().getValue();
+                                  //  Log.d("test class name : ", userSnapshot.getArrival());
+                                    list.add((iterator.next().getValue(Trajet.class)));
+                                }*/
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                                    Log.d("test class name : ", dataSnapshot.getChildren().getClass().getName());
-                                    Trajet trajet = userSnapshot.getValue(Trajet.class);
-                                    trajets.put(userSnapshot.getKey(), trajet);
+                                    Iterator<DataSnapshot> iterator = userSnapshot.getChildren().iterator();
+                                    while(iterator.hasNext()){
+                                        Trajet trajet = (iterator.next()).getValue(Trajet.class);
+                                        //  Log.d("test class name : ", userSnapshot.getArrival());
+                                        list.add((iterator.next().getValue(Trajet.class)));
+                                    }
+                                    //Log.d("test class name : ",trajet1.getArrival());
+
+
+                                    //Trajet trajet = userSnapshot.getValue(Trajet.class);
+                                   // trajets.put(userSnapshot.getKey(), trajet);
+                                   // trajets.put(userSnapshot.getKey(), userSnapshot);
+
                                 }
 
 
                                 values = new ArrayList<>(trajets.values());
                                 for (int i = 0; i < values.size(); i++) {
 
-                                    map = new HashMap<String, String>();
+                                    /*map = new HashMap<String, String>();
                                     map.put("departure", values.get(i).getDeparture() + "  ");
                                     map.put("arrival", values.get(i).getArrival() + "  ");
                                     map.put("departureDate", values.get(i).getDepartureDate() + "  ");
-                                    map.put("arrivalDate", values.get(i).getArrivalDate());
+                                    map.put("arrivalDate", values.get(i).getArrivalDate());*/
+                                    map = new HashMap<String, String>();
+                                    map.put("departure", list.get(i).getDeparture() + "  ");
+                                    map.put("arrival", list.get(i).getArrival() + "  ");
+                                    map.put("departureDate", list.get(i).getDepartureDate() + "  ");
+                                    map.put("arrivalDate", list.get(i).getArrivalDate());
                                     mapItems.add(map);
                                 }
 
