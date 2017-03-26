@@ -100,7 +100,14 @@ public class ProfilActivity extends AppCompatActivity {
                 }
             }, email);
 
-
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent i;
+                i = new Intent(ProfilActivity.this, FormActivity.class);
+                startActivity(i);
+            }
+        });
         }
 
         else if(requestCode == 1){

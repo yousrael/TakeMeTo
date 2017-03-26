@@ -1,19 +1,15 @@
 package com.mmm.istic.takemeto.Vue;
 
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mmm.istic.takemeto.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -61,18 +57,26 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.profil:
                affichProfil();
                 return true;
-            case R.id.settings:
-                settings();
+            case R.id.suggestions:
+                suggestions();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void settings() {
-        Intent i=new Intent(HomeActivity.this,SettingsActivity.class);
-        startActivity(i);
+    private void suggestions() {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[] { "TakeMeToTeam@gmail.com" }); // email id can be hardcoded too
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Done!"));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(HomeActivity.this, "No Email client found!!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     private void affichProfil() {
         //  FirebaseAuth.AuthStateListener mAuthListener;

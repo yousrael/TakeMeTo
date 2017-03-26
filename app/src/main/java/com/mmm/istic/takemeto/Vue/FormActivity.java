@@ -31,6 +31,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mmm.istic.takemeto.R;
+import com.mmm.istic.takemeto.dao.SimpleCallback;
+import com.mmm.istic.takemeto.dao.UserDaoImpl;
 import com.mmm.istic.takemeto.model.User;
 
 import java.io.ByteArrayOutputStream;
@@ -46,13 +48,14 @@ public class FormActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-
+    private String globalData;
     private EditText email;
     private EditText password;
     private EditText nom;
     private EditText prenom;
     private EditText dateDeNaissance;
     private EditText phone;
+    private Button createuser;
     String  userChoosenTask;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     ImageView image;
@@ -70,7 +73,7 @@ public class FormActivity extends AppCompatActivity {
         //intent.putExtra("requestCode", requestCode)
         //startActivityForResult(intent, NEW_CLIENT);
         image= (ImageView) findViewById(R.id.imageView2);
-        Button createuser = (Button) findViewById(R.id.CreateNewUser);
+        createuser = (Button) findViewById(R.id.CreateNewUser);
         TextView textview1 = (TextView) findViewById(R.id.textView6);
         TextView textview2 = (TextView) findViewById(R.id.textView7);
 
@@ -130,6 +133,62 @@ public class FormActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
+
+
+        //user deja logger
+        final UserDaoImpl serviceUser = new UserDaoImpl();
+        if(serviceUser.GetUser() != null){
+            TextView t_title = (TextView) findViewById(R.id.f_title);
+            t_title.setText("Modification Form");
+            createuser.setText("APPLY MODIFICATION");
+            serviceUser.findUserbyEmail(new SimpleCallback<User>() {
+                @Override
+                public void callback(User data) {
+
+                 email.setText(data.getMail());
+                    email.setEnabled(false);
+                    nom.setText(data.getNom());
+                    prenom.setText(data.getPrenom());
+                    phone.setText(data.getPhone());
+                    dateDeNaissance.setText(data.getDateDeNaissance());
+                    password.setEnabled(false);
+                    byte [] encodeByte=Base64.decode(data.getImage(),Base64.DEFAULT);
+                    Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+                    image.setImageBitmap(bitmap);
+
+                    serviceUser.findUserKeybyEmail(new SimpleCallback<String>() {
+                        @Override
+                        public void callback(String data) {
+                            globalData = data;
+                            createuser.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Bitmap largeIcon=  ((BitmapDrawable) image.getDrawable()).getBitmap();
+                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                    largeIcon.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                                    byte[] byteFormat = stream.toByteArray();
+                                    String encodedImage = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
+
+                                    databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                                    databaseReference.child(globalData).setValue(
+                                            new User(
+                                                    nom.getText().toString(),
+                                                    prenom.getText().toString(),
+                                                    email.getText().toString(),
+                                                    phone.getText().toString(),
+                                                    dateDeNaissance.getText().toString(), encodedImage));
+                                    Toast.makeText(FormActivity.this, "Modification done", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(FormActivity.this, HomeActivity.class);
+                                    startActivity(i);
+
+                                }
+                            });
+
+                        }
+                    },serviceUser.GetUser());
+                }
+            },serviceUser.GetUser());
+        }
     }
 
     //Updating the after selectining it from the dialog
@@ -154,7 +213,7 @@ public class FormActivity extends AppCompatActivity {
                         }
 
                         if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Error adding new user",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Error adding new user", Toast.LENGTH_SHORT).show();
                         }
 
                     }
