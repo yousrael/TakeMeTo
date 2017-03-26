@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.Activity;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
@@ -44,7 +45,7 @@ import static android.R.attr.bitmap;
  * @intent email = "xx@xx.com"
  *
  **/
-public class ProfilActivity extends AppCompatActivity {
+public class ProfilActivity extends Activity {
 
 
     TextView p_nom ;

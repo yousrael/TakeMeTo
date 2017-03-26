@@ -9,7 +9,7 @@
     </style>
 
     <style name="MyTheme" parent="@android:style/Theme.Light">
-        <item name="android:windowBackground">@drawable/covoiturage</item>
+        <item name="android:windowBackground">@drawable/voiture3</item>
     </style>
 
 </resources>

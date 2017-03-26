@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mmm.istic.takemeto.R;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends Activity {
 
     private EditText email;
     private EditText password;

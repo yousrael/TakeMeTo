@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -38,7 +39,7 @@ import java.util.Objects;
  * @intent.putExtra("emailUser",email);
  */
 
-public class TripActivity extends AppCompatActivity {
+public class TripActivity extends Activity {
 
 
     String emailTripUser;

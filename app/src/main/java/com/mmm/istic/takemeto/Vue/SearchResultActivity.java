@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SearchResultActivity extends AppCompatActivity {
+public class SearchResultActivity extends Activity {
 
     //To get the criteria filter via intent from the previous activity
     private String departureDate;

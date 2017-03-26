@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +26,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-public class SuggestTripActivity extends AppCompatActivity {
+public class SuggestTripActivity extends Activity {
 
     //Firebase
     private FirebaseAuth firebaseAuth;

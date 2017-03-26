@@ -44,7 +44,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class FormActivity extends AppCompatActivity {
+public class FormActivity extends Activity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;

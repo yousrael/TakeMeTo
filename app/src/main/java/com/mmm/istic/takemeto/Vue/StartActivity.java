@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,7 @@ import android.widget.Button;
 
 import com.mmm.istic.takemeto.R;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends Activity {
 
 
 
