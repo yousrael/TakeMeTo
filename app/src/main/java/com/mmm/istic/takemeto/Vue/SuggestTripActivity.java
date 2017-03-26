@@ -65,8 +65,9 @@ public class SuggestTripActivity extends AppCompatActivity {
         ArrayList<String> voyageurs = new ArrayList<>();
         voyageurs.add("KfobKb7oMRm1JMQvl8L");
         String key = databaseReference.push().getKey(); //generating a key
-        databaseReference.child(key).setValue(new Trajet("KfobKb7oMRm1JMQvl8L", departureDate.getText().toString(),
-                arrivalDate.getText().toString(),
+        databaseReference.child(key).setValue(new Trajet("KfobKb7oMRm1JMQvl8L",
+                departureDate.getText().toString()+"_"+departure.getText().toString()+"_"+arrival.getText().toString(),
+                arrivalDate.getText().toString() ,
                 departure.getText().toString(),
                 arrival.getText().toString(),
                 Integer.valueOf(places.getText().toString()),

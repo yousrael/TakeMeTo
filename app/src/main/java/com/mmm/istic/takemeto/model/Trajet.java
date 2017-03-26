@@ -23,6 +23,11 @@ public class Trajet {
     private Integer prixTrajet;
     private ArrayList<String> vayageurs ;
 
+
+    public Trajet(){
+
+    }
+
     public Trajet(String user, String departureDate, String arrivalDate, String departure, String arrival,
                   Integer places, Integer prixTrajet, ArrayList<String> vayageurs){
         this.user = user;
@@ -35,9 +40,6 @@ public class Trajet {
         this.vayageurs = vayageurs;
 
     }
-
-
-   public Trajet(){}
 
     public int getPlaces() {
         return places;

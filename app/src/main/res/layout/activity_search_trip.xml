@@ -10,111 +10,125 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mmm.istic.takemeto.Vue.SearchTripActivity">
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <TextView
-                android:text="departure date"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="22dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="64dp"
-                android:id="@+id/textView6" />
+                android:layout_gravity="center"
+                android:text="Please fill the form below"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:text="arrival date"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView6"
-                android:layout_alignLeft="@+id/textView6"
-                android:layout_alignStart="@+id/textView6"
-                android:layout_marginTop="53dp"
-                android:id="@+id/textView7" />
-
-            <TextView
-                android:text="departure place"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView7"
-                android:layout_alignLeft="@+id/textView7"
-                android:layout_alignStart="@+id/textView7"
-                android:layout_marginTop="56dp"
-                android:id="@+id/textView8" />
-
-            <TextView
-                android:text="arrival place"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView8"
-                android:layout_alignLeft="@+id/textView8"
-                android:layout_alignStart="@+id/textView8"
-                android:layout_marginTop="59dp"
-                android:id="@+id/textView9" />
+                android:text="departure date" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/edit_search_trip_date_depart"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
                 android:layout_alignTop="@+id/textView6"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/edit_departureDate"
-                android:hint="Enter your departure date" />
+                android:hint="Enter your departure date"
+                android:inputType="date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="arrival date" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/edit_search_trip_date_arrivee"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
-                android:layout_alignTop="@+id/textView7"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/edit_suggest_trip_date_arrivee"
-                android:hint="Enter your arrival date" />
+                android:hint="Enter your arrival date"
+                android:inputType="date" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="departure place" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/edit_search_trip_depart_place"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:layout_alignTop="@+id/textView8"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/edit_departure"
-                android:hint="Departure place" />
+                android:hint="Departure place"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="arrival place" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/edit_search_trip_arrival_place"
+                android:layout_width="0dp"
+                android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:layout_alignTop="@+id/textView9"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/edit_arrival"
-                android:hint="Arrival place" />
+                android:hint="Arrival place"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
 
-            <Button
-                android:text="Search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_searchTrip"
-                android:layout_marginTop="24dp"
-                android:layout_below="@+id/edit_suggest_trip_arrival_place"
-                android:layout_toRightOf="@+id/textView8"
-                android:layout_toEndOf="@+id/textView8" />
-        </RelativeLayout>
-    </ScrollView>
-
+    <Button
+        android:id="@+id/button_search_validate_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/edit_suggest_trip_arrival_place"
+        android:text="Search" />
 
 </RelativeLayout>

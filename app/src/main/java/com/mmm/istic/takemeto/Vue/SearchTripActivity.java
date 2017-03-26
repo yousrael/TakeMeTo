@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mmm.istic.takemeto.R;
@@ -24,6 +25,11 @@ import java.util.Locale;
 
 public class SearchTripActivity extends AppCompatActivity {
 
+    private EditText departureDate;
+    private EditText arrivalDate;
+    private EditText departure;
+    private EditText arrival;
+
     FirebaseAuth firebaseAuth ;
     Intent intent = getIntent();
     SearchServiceImpl searchService = new SearchServiceImpl();
@@ -32,20 +38,23 @@ public class SearchTripActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_trip);
-        Button search=(Button) findViewById(R.id.button_searchTrip);
+
+        departureDate = (EditText) findViewById(R.id.edit_search_trip_date_depart);
+        arrivalDate = (EditText) findViewById(R.id.edit_search_trip_date_arrivee);
+        departure = (EditText) findViewById(R.id.edit_search_trip_depart_place);
+        arrival = (EditText) findViewById(R.id.edit_search_trip_arrival_place);
+
+        Button search=(Button) findViewById(R.id.button_search_validate_search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText departureDate= (EditText) findViewById(R.id.edit_departureDate) ;
-                EditText departure = (EditText) findViewById(R.id.edit_departure);
-                EditText arrival = (EditText) findViewById(R.id.edit_arrival);
-                Criteria criteria  = new Criteria(departure.getText().toString(),arrival.getText().toString(),departureDate.getText().toString());
-                List<Trajet> trajets =searchService.searchForTrajet(criteria);
-                Trajet[] parcelableTrajets= new Trajet[trajets.size()] ;
-                trajets.toArray(parcelableTrajets);
-                Intent intent=new Intent(SearchTripActivity.this,SearchResultActivity.class);
-                intent.putExtra("trajets",parcelableTrajets);
-                startActivity(intent);
+                Intent i=new Intent(SearchTripActivity.this, SearchResultActivity.class);
+                i.putExtra("departureDate", departureDate.getText().toString());
+                i.putExtra("arrivalDate", arrivalDate.getText().toString());
+                i.putExtra("departure", departure.getText().toString());
+                i.putExtra("arrival", arrival.getText().toString());
+                startActivity(i);
+
             }
         });
     }

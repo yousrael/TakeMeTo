@@ -12,7 +12,9 @@ import com.mmm.istic.takemeto.model.Trajet;
 import com.mmm.istic.takemeto.util.Criteria;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -65,6 +67,10 @@ public class TrajetDaoImpl implements TrajetDao {
             }
         };
 
+        Log.d("departure date ", criteria.getDepartureDate());
+        database.equalTo(criteria.getDepartureDate(), "departureDate").addListenerForSingleValueEvent(trajetListener);
+                //.equalTo(criteria.getArrival(), "arrival").
+               // equalTo(criteria.getDepartureDate(), "departureDate").addListenerForSingleValueEvent(trajetListener);
 
         database.child("trajets/").equalTo(criteria.getDeparture(),"departure").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
