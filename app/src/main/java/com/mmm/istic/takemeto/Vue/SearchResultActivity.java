@@ -111,7 +111,9 @@ public class SearchResultActivity extends Activity {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Intent intent1=new Intent(SearchResultActivity.this, TripActivity.class);
-                            intent.putExtra("key",keys.get(position));
+
+                            intent1.putExtra("key",keys.get(position));
+                            Log.d("key in Search",keys.get(position));
                             intent.putExtra("user",values.get(position).getUser());
                             intent1.putExtra("departure",values.get(position).getDeparture());
                             intent1.putExtra("arrival",values.get(position).getArrival());

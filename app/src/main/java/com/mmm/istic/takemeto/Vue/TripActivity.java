@@ -195,22 +195,26 @@ public class TripActivity extends Activity {
                 public void onClick(View v) {
                     //TODO:Book un trip
                     Log.e("qsdqsd", "CLICK book");
-                    String key= getIntent().getStringExtra("key");
+                    Intent intent2 =getIntent();
+                    String key= intent2.getStringExtra("key");
                     //Add the current user to trip passanger list
-                    Map<String, Object> vayageurs = new HashMap<>();
+                   ;
                     final String[] currentUserKey = new String[1];
                     databaseReference = FirebaseDatabase.getInstance().getReference("trajets/"+key+"/vayageurs");
                     Log.e("keyAAA---------------->",key);
-                    String keyVoyageur = databaseReference.push().getKey();
+
 
                     usrDao.findUserbyEmail(new SimpleCallback<User>() {
                         @Override
                         public void callback(User data) {
+                             Map<String, Object> vayageurs = new HashMap<>();
+                            String keyVoyageur = databaseReference.push().getKey();
                             currentUserKey[0] =data.getId();
+                            vayageurs.put(keyVoyageur,currentUserKey[0]);
+                            databaseReference.updateChildren(vayageurs);
                         }
                     },currentUsermail);
-                    vayageurs.put(keyVoyageur,currentUserKey[0]);
-                    databaseReference.updateChildren(vayageurs);
+
 
                     //Start the next activity
                     Intent intent = new Intent(TripActivity.this, HomeActivity.class);
