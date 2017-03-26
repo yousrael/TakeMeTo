@@ -73,6 +73,7 @@ public class SearchResultActivity extends AppCompatActivity {
                     Map<String, Trajet> trajets = new HashMap<String, Trajet>();
                     for (DataSnapshot userSnapshot: dataSnapshot.getChildren()) {
                         Trajet trajet = userSnapshot.getValue(Trajet.class);
+                        Log.d("current trajet key :", userSnapshot.getKey());
                         trajets.put(userSnapshot.getKey(), trajet);
                     }
 

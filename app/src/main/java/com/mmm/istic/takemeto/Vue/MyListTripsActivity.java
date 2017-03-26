@@ -94,6 +94,7 @@ public class MyListTripsActivity extends AppCompatActivity {
                             if (dataSnapshot.getValue() != null) {
                                 Map<String, Trajet> trajets = new HashMap<String, Trajet>();
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                    Log.d("test class name : ", dataSnapshot.getChildren().getClass().getName());
                                     Trajet trajet = userSnapshot.getValue(Trajet.class);
                                     trajets.put(userSnapshot.getKey(), trajet);
                                 }
@@ -158,6 +159,7 @@ public class MyListTripsActivity extends AppCompatActivity {
 
                                 values = new ArrayList<>(trajets.values());
                                 for(Trajet trajet : values){
+
                                     for(String voyageur : trajet.getVayageurs()){
                                         if(voyageur.equals(keyUser)){
                                             mapReservation = new HashMap<String, String>();
