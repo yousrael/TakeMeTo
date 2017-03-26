@@ -127,6 +127,8 @@ public class MyListTripsActivity extends Activity {
                                     map.put("arrival", values.get(i).getArrival() + "  ");
                                     map.put("departureDate", values.get(i).getDepartureDate() + "  ");
                                     map.put("arrivalDate", values.get(i).getArrivalDate());
+                                    map.put("places",""+values.get(i).getPlaces());
+                                    map.put("prixTrajet", ""+values.get(i).getPrixTrajet());
                                     mapItems.add(map);
                                 }
 
@@ -185,7 +187,10 @@ public class MyListTripsActivity extends Activity {
                                             mapReservation.put("arrival", trajet.getArrival() + "  ");
                                             mapReservation.put("departureDate", trajet.getDepartureDate() + "  ");
                                             mapReservation.put("arrivalDate", trajet.getArrivalDate());
-                                            mapReservation.put("user", trajet.getUser());
+                                            mapReservation.put("places",""+trajet.getPlaces());
+                                            mapReservation.put("prixTrajet", ""+trajet.getPrixTrajet());
+                                            mapReservation.put("user",trajet.getUser());
+
                                             mapItemsReservation.add(mapReservation);
                                         }
                                     }

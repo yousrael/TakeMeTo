@@ -8,12 +8,11 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class FormActivity extends AppCompatActivity {
+public class FormModificationActivity extends Activity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -76,7 +75,6 @@ public class FormActivity extends AppCompatActivity {
         createuser = (Button) findViewById(R.id.CreateNewUser);
         TextView textview1 = (TextView) findViewById(R.id.textView6);
         TextView textview2 = (TextView) findViewById(R.id.textView7);
-        Button takeImage= (Button) findViewById(R.id.takeimage);
 
         email = (EditText) findViewById(R.id.edit_suggest_trip_date_arrivee);
         password = (EditText) findViewById(R.id.edit_suggest_trip_arrival_place);
@@ -102,7 +100,7 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(FormActivity.this, date, myCalendar
+                new DatePickerDialog(FormModificationActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -134,36 +132,62 @@ public class FormActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-   takeImage.setOnClickListener(new View.OnClickListener() {
-       @Override
-       public void onClick(View v) {
-
-           final CharSequence[] items = { "Take Photo", "Choose from Library",
-                   "Cancel" };
-           AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
-           builder.setTitle("Add Photo!");
-           builder.setItems(items, new DialogInterface.OnClickListener() {
-               @Override
-               public void onClick(DialogInterface dialog, int item) {
-                   boolean result=Utility.checkPermission(FormActivity.this);
-                   if (items[item].equals("Take Photo")) {
-                       userChoosenTask="Take Photo";
-                       if(result)
-                           cameraIntent();
-                   } else if (items[item].equals("Choose from Library")) {
-                       userChoosenTask="Choose from Library";
-                       if(result)
-                           galleryIntent();
-                   } else if (items[item].equals("Cancel")) {
-                       dialog.dismiss();
-                   }
-               }
-           });
-           builder.show();
-       }
-   });
 
 
+        //user deja logger
+        final UserDaoImpl serviceUser = new UserDaoImpl();
+        if(serviceUser.GetUser() != null){
+            TextView t_title = (TextView) findViewById(R.id.f_title);
+            t_title.setText("Modification Form");
+            createuser.setText("APPLY MODIFICATION");
+            serviceUser.findUserbyEmail(new SimpleCallback<User>() {
+                @Override
+                public void callback(User data) {
+
+                 email.setText(data.getMail());
+                    email.setEnabled(false);
+                    nom.setText(data.getNom());
+                    prenom.setText(data.getPrenom());
+                    phone.setText(data.getPhone());
+                    dateDeNaissance.setText(data.getDateDeNaissance());
+                    password.setEnabled(false);
+                    byte [] encodeByte=Base64.decode(data.getImage(),Base64.DEFAULT);
+                    Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+                    image.setImageBitmap(bitmap);
+
+                    serviceUser.findUserKeybyEmail(new SimpleCallback<String>() {
+                        @Override
+                        public void callback(String data) {
+                            globalData = data;
+                            createuser.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Bitmap largeIcon=  ((BitmapDrawable) image.getDrawable()).getBitmap();
+                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                    largeIcon.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                                    byte[] byteFormat = stream.toByteArray();
+                                    String encodedImage = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
+
+                                    databaseReference = FirebaseDatabase.getInstance().getReference("users");
+                                    databaseReference.child(globalData).setValue(
+                                            new User(
+                                                    nom.getText().toString(),
+                                                    prenom.getText().toString(),
+                                                    email.getText().toString(),
+                                                    phone.getText().toString(),
+                                                    dateDeNaissance.getText().toString(), encodedImage));
+                                    Toast.makeText(FormModificationActivity.this, "Modification done", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(FormModificationActivity.this, HomeActivity.class);
+                                    startActivity(i);
+
+                                }
+                            });
+
+                        }
+                    },serviceUser.GetUser());
+                }
+            },serviceUser.GetUser());
+        }
     }
 
     //Updating the after selectining it from the dialog
@@ -183,7 +207,7 @@ public class FormActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d("add user", "createUserWithEmail:onComplete:" + task.isSuccessful());
                             addNewUser();
-                            Intent i = new Intent(FormActivity.this, HomeActivity.class);
+                            Intent i = new Intent(FormModificationActivity.this, HomeActivity.class);
                             startActivity(i);
                         }
 
@@ -211,16 +235,16 @@ public class FormActivity extends AppCompatActivity {
     }
 
     //Choose profil image
-   /* public void chooseProfilImage(View view) {
+    public void chooseProfilImage(View view) {
 
         final CharSequence[] items = { "Take Photo", "Choose from Library",
                 "Cancel" };
-        AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(FormModificationActivity.this);
         builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                boolean result=Utility.checkPermission(FormActivity.this);
+                boolean result=Utility.checkPermission(FormModificationActivity.this);
                 if (items[item].equals("Take Photo")) {
                    userChoosenTask="Take Photo";
                     if(result)
@@ -236,7 +260,7 @@ public class FormActivity extends AppCompatActivity {
         });
         builder.show();
 
-    }*/
+    }
 
     private void cameraIntent()
     {
