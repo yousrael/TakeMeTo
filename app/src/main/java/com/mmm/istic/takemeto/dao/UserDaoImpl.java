@@ -28,7 +28,7 @@ import static android.content.ContentValues.TAG;
 public class UserDaoImpl implements UserDao {
 
 
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("trajets");
+    private DatabaseReference databaseReference;
 
     private FirebaseAuth firebaseAuth;
     private ArrayList<User> foundUsers;
@@ -180,7 +180,7 @@ public class UserDaoImpl implements UserDao {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d("get User by email","Failure");
+                Log.d("get User by key","Failure");
             }
         });
     }

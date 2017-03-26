@@ -6,7 +6,10 @@ package com.mmm.istic.takemeto.dao;
 
 
 
+import android.support.annotation.NonNull;
+
 import com.mmm.istic.takemeto.model.Trajet;
+import com.mmm.istic.takemeto.model.User;
 import com.mmm.istic.takemeto.util.Criteria;
 
 import java.util.List;
@@ -17,23 +20,14 @@ import java.util.Map;
  */
 public interface TrajetDao {
 
-    /**
-     * enregistre un trajet dans la base
-     * @param trajet
-     */
-    public void putTrajet (Trajet trajet);
 
     /**
-     * Recherche des trajet selon un critère donné
-     * @param criteria critère de recherche
-     * @return Une map de trajet
+     * Recherche un  trajet par clé
+     * @param key une clé
+     * @return un Trajet
      */
-    public List<Trajet> findTrajetbyCriteria(Criteria criteria);
+//    public List<Trajet> findAll();
+    public void findUserbyKey(@NonNull SimpleCallback<Trajet> finishedCallback, String key);
 
-    /**
-     * Recherche tous les trajets
-     * @return
-     */
-    public List<Trajet> findAll();
 
 }
