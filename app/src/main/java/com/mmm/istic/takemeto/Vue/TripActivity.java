@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mmm.istic.takemeto.R;
@@ -41,9 +44,14 @@ public class TripActivity extends AppCompatActivity {
     String emailTripUser;
     String keyTripUser;
     String emailCurrentUser;
-
+    FirebaseAuth fireBaseAuth = FirebaseAuth.getInstance();
+    String currentUsermail = fireBaseAuth.getCurrentUser().getEmail();
     //Firebase database
     private DatabaseReference databaseReference;
+
+    UserDao usrDao= new UserDaoImpl();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,8 +141,10 @@ public class TripActivity extends AppCompatActivity {
                     Log.e("qsdqsd", "CLICK edit");
                     //Add the current user to trip passanger list
                     Map<String, Object> vayageurs = new HashMap<>();
+
                     databaseReference = FirebaseDatabase.getInstance().getReference("trajets/-Kg4Pwto2HoNaSaKNOmM/vayageurs");
                     String keyVoyageur = databaseReference.push().getKey();
+
                     vayageurs.put(keyVoyageur, "current user key");
                     databaseReference.updateChildren(vayageurs);
 
@@ -152,7 +162,33 @@ public class TripActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     //TODO:Book un trip
                     Log.e("qsdqsd", "CLICK book");
+                    String key= getIntent().getStringExtra("key");
+                    //Add the current user to trip passanger list
+                    Map<String, Object> vayageurs = new HashMap<>();
+                    final String[] currentUserKey = new String[1];
+                    databaseReference = FirebaseDatabase.getInstance().getReference("trajets/"+key+"/vayageurs");
+                    String keyVoyageur = databaseReference.push().getKey();
+
+                    usrDao.findUserbyEmail(new SimpleCallback<User>() {
+                        @Override
+                        public void callback(User data) {
+                            currentUserKey[0] =data.getId();
+                        }
+                    },currentUsermail);
+                    vayageurs.put(keyVoyageur,currentUserKey[0]);
+                    databaseReference.updateChildren(vayageurs);
+
+                    //Start the next activity
                     Intent intent = new Intent(TripActivity.this, HomeActivity.class);
+                    Context context = getApplicationContext();
+                    CharSequence text = "Trip Booked";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+
+
                     startActivity(intent);
                 }
             });
