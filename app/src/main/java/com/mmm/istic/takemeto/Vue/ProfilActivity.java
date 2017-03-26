@@ -105,7 +105,7 @@ public class ProfilActivity extends Activity {
             @Override
             public void onClick(View v) {
                 final Intent i;
-                i = new Intent(ProfilActivity.this, FormActivity.class);
+                i = new Intent(ProfilActivity.this, FormModificationActivity.class);
                 startActivity(i);
             }
         });

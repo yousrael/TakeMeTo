@@ -186,19 +186,19 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:text="Choose a profil image"
-                android:onClick="chooseProfilImage"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_height="match_parent" />
+                android:onClick="chooseProfilImage"
+                android:text="Choose a profil image" />
 
             <Button
                 android:id="@+id/CreateNewUser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
+                android:layout_weight="1"
                 android:onClick="OnClickFunction"
-                android:text="Create New User"
-                android:layout_weight="1" />
+                android:text="Create New User" />
 
         </LinearLayout>
 
