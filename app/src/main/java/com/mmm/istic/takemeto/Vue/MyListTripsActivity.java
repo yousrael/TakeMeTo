@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class MyListTripsActivity extends AppCompatActivity {
+public class MyListTripsActivity extends Activity {
     private ListView malistView;
     private ListView malistViewReservations;
     private SimpleAdapter mlistAdapter;

@@ -1,5 +1,6 @@
 package com.mmm.istic.takemeto.Vue;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class SearchTripActivity extends AppCompatActivity {
+public class SearchTripActivity extends Activity {
 
     private EditText departureDate;
     private EditText arrivalDate;
