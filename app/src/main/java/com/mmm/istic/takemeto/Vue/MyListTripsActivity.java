@@ -167,6 +167,7 @@ public class MyListTripsActivity extends AppCompatActivity {
                                             mapReservation.put("arrival", trajet.getArrival() + "  ");
                                             mapReservation.put("departureDate", trajet.getDepartureDate() + "  ");
                                             mapReservation.put("arrivalDate", trajet.getArrivalDate());
+                                            mapReservation.put("user", trajet.getUser());
                                             mapItemsReservation.add(mapReservation);
                                         }
                                     }
@@ -186,7 +187,7 @@ public class MyListTripsActivity extends AppCompatActivity {
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
                                 mlistAdapter = new SimpleAdapter(getBaseContext(), mapItemsReservation, R.layout.item,
-                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate", "places", "prixTrajet"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6});
+                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate", "places", "prixTrajet","user"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6,R.id.textView17});
                                 //ici on affecte l'adapteur pour la listView afin de la remplir avec les elemets de item
                                 malistViewReservations.setAdapter(mlistAdapter);
 
@@ -240,13 +241,14 @@ public class MyListTripsActivity extends AppCompatActivity {
                 String arrivalDate = ((TextView) view.findViewById(R.id.textView4)).getText().toString();
                 String places = ((TextView) view.findViewById(R.id.textView5)).getText().toString();
                 String prixTrajet = ((TextView) view.findViewById(R.id.textView6)).getText().toString();
+                String keyUser = ((TextView) view.findViewById(R.id.textView17)).getText().toString();
                 intent.putExtra("departure", departure);
                 intent.putExtra("arrival", arrival);
                 intent.putExtra("departureDate", departureDate);
                 intent.putExtra("arrivalDate", arrivalDate);
                 intent.putExtra("places", places);
                 intent.putExtra("prixTrajet", prixTrajet);
-                intent.putExtra("emailUser", email);
+                intent.putExtra("keyUser", keyUser);
                 startActivity(intent);
             }
         });

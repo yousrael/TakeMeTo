@@ -15,7 +15,6 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mmm.istic.takemeto.R;
 import com.mmm.istic.takemeto.model.Trajet;
-import com.mmm.istic.takemeto.service.SearchServiceImpl;
 import com.mmm.istic.takemeto.util.Criteria;
 
 import java.text.SimpleDateFormat;
@@ -32,7 +31,6 @@ public class SearchTripActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth ;
     Intent intent = getIntent();
-    SearchServiceImpl searchService = new SearchServiceImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

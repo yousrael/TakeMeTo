@@ -31,6 +31,14 @@ public interface UserDao {
     public void findUserKeybyEmail(@NonNull SimpleCallback<String> finishedCallback,String email);
 
     /**
+     * Recherche la key(hashMap) d'un utilisateur selon une adresse email
+     * @param key email a rechercher
+     * @return un User
+     */
+//    public String findUserKeybyEmail(String email);
+    public void findUserbyKey(@NonNull SimpleCallback<User> finishedCallback,String key);
+
+    /**
      * récupérer l'email de l'utilisateur courant
      * @return une adresse email
      */

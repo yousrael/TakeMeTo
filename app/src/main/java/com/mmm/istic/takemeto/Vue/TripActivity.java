@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mmm.istic.takemeto.R;
 import com.mmm.istic.takemeto.dao.SimpleCallback;
+import com.mmm.istic.takemeto.dao.UserDao;
 import com.mmm.istic.takemeto.dao.UserDaoImpl;
 import com.mmm.istic.takemeto.model.Trajet;
 import com.mmm.istic.takemeto.model.User;
@@ -38,6 +39,7 @@ public class TripActivity extends AppCompatActivity {
 
 
     String emailTripUser;
+    String keyTripUser;
     String emailCurrentUser;
 
     //Firebase database
@@ -53,7 +55,18 @@ public class TripActivity extends AppCompatActivity {
         UserDaoImpl serviceUser = new UserDaoImpl();
         emailCurrentUser = serviceUser.GetUser();
         emailTripUser = intent.getStringExtra("emailUser");
+        if(emailTripUser == null) {
+            Log.e("null emailUser","loadinf keyUser");
+            keyTripUser = intent.getStringExtra("keyUser");
 
+            serviceUser.findUserbyKey(new SimpleCallback<User>() {
+                @Override
+                public void callback(User data) {
+                    emailTripUser = data.getMail();
+                }
+            },"-"+keyTripUser);
+            Log.e("null emailUser","loadinf keyUser / "+keyTripUser);
+        }
         //set listener sur le nom pour afficher le profile
         TextView showUser = (TextView) findViewById(R.id.t_nom_prenom);
         showUser.setOnClickListener(new View.OnClickListener() {

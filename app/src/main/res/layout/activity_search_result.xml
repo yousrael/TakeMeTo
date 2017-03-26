@@ -10,12 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.mmm.istic.takemeto.Vue.SearchResultActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <ListView
+            android:id="@+id/listView_searchTrip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </ScrollView>
+
 </RelativeLayout>
