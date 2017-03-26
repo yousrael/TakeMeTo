@@ -5,31 +5,35 @@ package com.mmm.istic.takemeto.model;
  */
 
 
+import java.io.Serializable;
+import java.nio.channels.SeekableByteChannel;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
-Classe representant un trajet de l'application
+ * Classe representant un trajet de l'application
  */
-public class Trajet {
+public class Trajet implements Serializable{
 
-    private String user ;
+    private String user;
     private String departureDate;
     private String arrivalDate;
     private String departure;
     private String arrival;
-    private Integer places ;
+    private Integer places;
     private Integer prixTrajet;
-    private ArrayList<String> vayageurs ;
+    private Map<String, Object> vayageurs;
 
 
-    public Trajet(){
+    public Trajet() {
 
     }
 
     public Trajet(String user, String departureDate, String arrivalDate, String departure, String arrival,
-                  Integer places, Integer prixTrajet,  ArrayList<String> vayageurs){
+                  Integer places, Integer prixTrajet, Map<String, Object> vayageurs) {
         this.user = user;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
@@ -49,11 +53,11 @@ public class Trajet {
         this.places = places;
     }
 
-    public  ArrayList<String> getVayageurs() {
+    public Map<String, Object> getVayageurs() {
         return vayageurs;
     }
 
-    public void setVayageurs( ArrayList<String> vayageurs) {
+    public void setVayageurs(Map<String, Object> vayageurs) {
         this.vayageurs = vayageurs;
     }
 
@@ -66,7 +70,6 @@ public class Trajet {
     }
 
 
-
     public int getPrixTrajet() {
         return prixTrajet;
     }
@@ -74,6 +77,8 @@ public class Trajet {
     public void setPrixTrajet(int prixTrajet) {
         this.prixTrajet = prixTrajet;
     }
+
+
 
     /**
      * Ajoute un vayageur au trajet
@@ -91,13 +96,13 @@ public class Trajet {
 
     /**
      * Retourne le nombre de places disponible sur le trajet
+     *
      * @return un nombre positif de places disponibles 0 si il ne reste pas de place
      */
-    public int nombresPlacesDisponible(){
-        if (this.vayageurs.size() < this.places){
-            return this.vayageurs.size()- this.places ;
-        }
-        else {
+    public int nombresPlacesDisponible() {
+        if (this.vayageurs.size() < this.places) {
+            return this.vayageurs.size() - this.places;
+        } else {
             return 0;
         }
 

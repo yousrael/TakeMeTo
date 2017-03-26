@@ -127,6 +127,52 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+
+                <TextView
+                    android:id="@+id/text_suggest_trip_heure_depart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Departure Time" />
+
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_heure_depart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="Departure Time"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/text_suggest_trip_heure_arrivee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Arrival Time" />
+
+
+                <EditText
+                    android:id="@+id/edit_suggest_trip_heure_arrivee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:hint="Arrival Time"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/text_suggest_trip_sits"
                     android:layout_width="0dp"
