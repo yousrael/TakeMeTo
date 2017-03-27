@@ -154,7 +154,7 @@ public class SuggestTripActivity extends AppCompatActivity {
                 if (data != null) {
                     Map<String, Object> voyageurs = new HashMap<>();
                     String keyvoyageur = databaseReference.child("vayageurs").push().getKey();
-                    voyageurs.put(keyvoyageur, "null");
+                    voyageurs.put(keyvoyageur, "-KfobKb7oMRm1JMQvl8L");
                     String key = databaseReference.push().getKey();
                     databaseReference.child(key).setValue(new Trajet(data,
                             departureDate.getText().toString() + "_" + departure.getText().toString() + "_" + arrival.getText().toString(),
