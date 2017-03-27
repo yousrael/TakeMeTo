@@ -190,6 +190,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/takeimage"
+                android:background="@drawable/button_background"
                 android:text="Choose a profil image"
                 android:onClick="chooseProfilImage"/>
 
@@ -198,6 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
+                android:background="@drawable/button_background"
                 android:layout_weight="1"
                 android:onClick="OnClickFunction"
                 android:text="Create New User" />

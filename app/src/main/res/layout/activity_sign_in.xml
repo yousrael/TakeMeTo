@@ -101,6 +101,7 @@
             android:layout_height="0dp"
             android:layout_below="@+id/edit_signin_prenom"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background"
             android:layout_weight="1"
             android:onClick="signIn"
             android:text="Sign IN" />
@@ -111,6 +112,7 @@
             android:layout_height="0dp"
             android:layout_below="@+id/edit_signin_prenom"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background"
             android:layout_weight="1"
             android:onClick="signInasuser"
             android:text="Sign in as user1" />

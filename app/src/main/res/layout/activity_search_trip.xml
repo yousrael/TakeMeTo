@@ -130,6 +130,7 @@
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/edit_suggest_trip_arrival_place"
+        android:background="@drawable/button_background"
         android:text="Search"
         android:layout_height="wrap_content" />
     </LinearLayout>

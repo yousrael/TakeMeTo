@@ -2,6 +2,8 @@ package com.mmm.istic.takemeto.Vue;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,10 +21,12 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Button signin=(Button) findViewById(R.id.button4);
+        final Button signin=(Button) findViewById(R.id.button4);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                signin.setDrawingCacheBackgroundColor(Color.parseColor("#000000"));
+
                 Intent i=new Intent(StartActivity.this,SignInActivity.class);
                 startActivity(i);
               /* Intent intent = new Intent(android.content.Intent.ACTION_VIEW,

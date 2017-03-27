@@ -9,4 +9,6 @@
         android:title="Suggestions" />
     <item android:id="@+id/home"
     android:title="Go back home" />
+    <item android:id="@+id/logout"
+        android:title="Logout" />
 </menu>

@@ -136,6 +136,12 @@ public class SearchTripActivity extends AppCompatActivity {
             case R.id.home:
                 goBackHome();
                 return true;
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(this, StartActivity.class);
+                startActivity(intent);
+                Toast.makeText(this, "You're disconnected", Toast.LENGTH_SHORT).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
