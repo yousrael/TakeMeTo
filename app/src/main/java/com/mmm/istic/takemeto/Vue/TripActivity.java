@@ -87,7 +87,7 @@ public class TripActivity extends AppCompatActivity {
                 public void callback(User data) {
                     emailTripUser = data.getMail();
                     Log.e("Setting emailTripUser", "" + emailTripUser);
-                    t_nom_prenom.setText(emailTripUser);
+                    t_nom_prenom.setText(""+data.getNom()+" "+data.getPrenom());
                     //set listener sur le nom pour afficher le profile
                     TextView showUser = (TextView) findViewById(R.id.t_nom_prenom);
                     showUser.setOnClickListener(new View.OnClickListener() {
