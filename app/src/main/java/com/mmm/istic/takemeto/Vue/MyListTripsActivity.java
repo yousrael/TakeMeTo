@@ -125,7 +125,7 @@ public class MyListTripsActivity extends AppCompatActivity {
                                     map = new HashMap<String, String>();
                                     map.put("departure", values.get(i).getDeparture() + "  ");
                                     map.put("arrival", values.get(i).getArrival() + "  ");
-                                    map.put("departureDate", values.get(i).getDepartureDate() + "  ");
+                                    map.put("departureDate", values.get(i).getDepartureDate().split("_")[0] + "  ");
                                     map.put("arrivalDate", values.get(i).getArrivalDate());
                                     map.put("places",""+values.get(i).getPlaces());
                                     map.put("prixTrajet", ""+values.get(i).getPrixTrajet());
@@ -185,7 +185,7 @@ public class MyListTripsActivity extends AppCompatActivity {
                                             mapReservation = new HashMap<String, String>();
                                             mapReservation.put("departure", trajet.getDeparture() + "  ");
                                             mapReservation.put("arrival", trajet.getArrival() + "  ");
-                                            mapReservation.put("departureDate", trajet.getDepartureDate() + "  ");
+                                            mapReservation.put("departureDate", trajet.getDepartureDate().split("_")[0] + "  ");
                                             mapReservation.put("arrivalDate", trajet.getArrivalDate());
                                             mapReservation.put("places",""+trajet.getPlaces());
                                             mapReservation.put("prixTrajet", ""+trajet.getPrixTrajet());

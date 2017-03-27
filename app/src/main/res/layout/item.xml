@@ -48,19 +48,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <TextView
             android:text="LieuDepart"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:id="@+id/textView1"
             android:layout_weight="1" />
 
         <TextView
             android:text="LieuArrive"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:id="@+id/textView2"
             android:layout_weight="1" />
 
@@ -69,19 +72,19 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1">
 
         <TextView
             android:text="dateDepart"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
             android:layout_weight="1" />
 
         <TextView
             android:text="dateArrivee"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView4"
             android:layout_weight="1" />
