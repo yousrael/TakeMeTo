@@ -33,6 +33,10 @@ public class SearchTripActivity extends AppCompatActivity {
     private EditText arrivalDate;
     private EditText departure;
     private EditText arrival;
+    //For the DatePicker dialog
+    Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener dated;
+    DatePickerDialog.OnDateSetListener datea;
 
     FirebaseAuth firebaseAuth ;
     Intent intent = getIntent();
@@ -58,6 +62,54 @@ public class SearchTripActivity extends AppCompatActivity {
                 i.putExtra("arrival", arrival.getText().toString());
                 startActivity(i);
 
+            }
+        });
+
+        //Dialog to select a date, see also updateDateDeNaissance() at the bottom
+        datea = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDateArrival();
+            }
+
+        };
+        arrivalDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(SearchTripActivity.this, datea, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+        dated = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateDatedeparture();
+            }
+
+        };
+        departureDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(SearchTripActivity.this, dated, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
     }
@@ -115,5 +167,18 @@ public class SearchTripActivity extends AppCompatActivity {
         Intent i=new Intent(this,MyListTripsActivity.class);
         startActivity(i);
 
+    }
+    //Updating the after selectining it from the dialog
+    private void updateDatedeparture() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+
+        departureDate.setText(sdf.format(myCalendar.getTime()));
+    }
+    private void updateDateArrival() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+
+        arrivalDate.setText(sdf.format(myCalendar.getTime()));
     }
 }
