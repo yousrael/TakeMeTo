@@ -223,7 +223,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Commentaire" />
+                    android:text="Comment" />
 
                 <EditText
                     android:id="@+id/edit_suggest_trip_comment"

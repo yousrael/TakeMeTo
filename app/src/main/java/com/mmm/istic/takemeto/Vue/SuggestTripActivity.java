@@ -100,6 +100,16 @@ public class SuggestTripActivity extends AppCompatActivity {
             }
 
         };
+        arrivalDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(SuggestTripActivity.this, datea, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
         dated = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -113,7 +123,17 @@ public class SuggestTripActivity extends AppCompatActivity {
             }
 
         };
-        arrivalDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        departureDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(SuggestTripActivity.this, dated, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+      /*  arrivalDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!dateab) {
@@ -137,7 +157,7 @@ public class SuggestTripActivity extends AppCompatActivity {
                 }
                 datedb = !datedb;
             }
-        });
+        });*/
         //end date dialog
 
     }
