@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Trip n°"
-            android:textSize="36sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/t_numero"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="42"
-            android:textSize="36sp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Driver : "
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/t_nom_prenom"
@@ -67,12 +67,12 @@
                 android:layout_weight="1"
                 android:text="John Doe El hamich laposte"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
             android:orientation="vertical">
@@ -88,8 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="FROM :"
-                    android:textSize="24sp" />
+                    android:text="From:"
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="3 main road, Mars"
-                        android:textSize="24sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/t_depart_date"
@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="12/12/2525 7:55"
-                        android:textSize="24sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -127,8 +127,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TO :"
-                    android:textSize="24sp" />
+                    android:text="To:"
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -141,16 +141,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="3 main road, Mars"
-                        android:textSize="24sp" />
+                        android:text="     3 main road, Mars"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/t_arrival_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="12/12/2525 15:16"
-                        android:textSize="24sp" />
+                        android:text="     12/12/2525 15:16"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -162,7 +162,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_background"
                 android:text="Google Maps"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal|center" />
 
         </LinearLayout>
 
@@ -178,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Traject price : "
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/t_prix"
@@ -200,8 +202,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Nb place restante : "
-                android:textSize="24sp" />
+                android:text="Nb places restantes : "
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/t_nbplacelibre"
@@ -220,7 +222,7 @@
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_background"
-        android:layout_weight="1"
+        android:layout_weight="0.6"
         android:text="Book / EDIT" />
 
 </LinearLayout>

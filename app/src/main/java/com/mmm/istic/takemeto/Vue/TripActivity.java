@@ -142,9 +142,9 @@ public class TripActivity extends AppCompatActivity {
         trajet.setArrival(intent.getStringExtra("arrival"));
         trajet.setDepartureDate(intent.getStringExtra("departureDate"));
         trajet.setArrivalDate(intent.getStringExtra("arrivalDate"));
-        int aze = Integer.parseInt("" + intent.getIntExtra("places", 0));
+        int aze = Integer.parseInt("" + intent.getStringExtra("places"));
         trajet.setPlaces(aze);
-        int ert = Integer.parseInt("" + intent.getIntExtra("prixTrajet", 0));
+        int ert = Integer.parseInt("" + intent.getStringExtra("prixTrajet"));
         trajet.setPrixTrajet(ert);
 
 
