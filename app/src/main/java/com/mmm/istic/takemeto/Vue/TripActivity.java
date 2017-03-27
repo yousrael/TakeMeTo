@@ -50,8 +50,7 @@ public class TripActivity extends AppCompatActivity {
     //Firebase database
     private DatabaseReference databaseReference;
 
-    UserDao usrDao= new UserDaoImpl();
-
+    UserDao usrDao = new UserDaoImpl();
 
 
     @Override
@@ -75,16 +74,16 @@ public class TripActivity extends AppCompatActivity {
         UserDaoImpl serviceUser = new UserDaoImpl();
         emailCurrentUser = serviceUser.GetUser();
         emailTripUser = intent.getStringExtra("emailUser");
-        Log.e("emailUser","emailUser"+emailTripUser);
-        if(emailTripUser == null) {
-            Log.e("null emailUser","loadinf keyUser");
+        Log.e("emailUser", "emailUser" + emailTripUser);
+        if (emailTripUser == null) {
+            Log.e("null emailUser", "loadinf keyUser");
             keyTripUser = intent.getStringExtra("keyUser");
 
             serviceUser.findUserbyKey(new SimpleCallback<User>() {
                 @Override
                 public void callback(User data) {
                     emailTripUser = data.getMail();
-                    Log.e("Setting emailTripUser",""+emailTripUser);
+                    Log.e("Setting emailTripUser", "" + emailTripUser);
                     t_nom_prenom.setText(emailTripUser);
                     //set listener sur le nom pour afficher le profile
                     TextView showUser = (TextView) findViewById(R.id.t_nom_prenom);
@@ -107,10 +106,9 @@ public class TripActivity extends AppCompatActivity {
 
                     });
                 }
-            },""+keyTripUser);
-            Log.e("null emailUser","loadinf keyUser / "+keyTripUser);
-        }
-        else{
+            }, "" + keyTripUser);
+            Log.e("null emailUser", "loadinf keyUser / " + keyTripUser);
+        } else {
             t_nom_prenom.setText(emailCurrentUser);
         }
 
@@ -141,11 +139,10 @@ public class TripActivity extends AppCompatActivity {
         trajet.setArrival(intent.getStringExtra("arrival"));
         trajet.setDepartureDate(intent.getStringExtra("departureDate"));
         trajet.setArrivalDate(intent.getStringExtra("arrivalDate"));
-        int aze = Integer.parseInt(""+intent.getIntExtra("places", 0));
+        int aze = Integer.parseInt("" + intent.getIntExtra("places", 0));
         trajet.setPlaces(aze);
-        int ert = Integer.parseInt(""+intent.getIntExtra("prixTrajet", 0));
+        int ert = Integer.parseInt("" + intent.getIntExtra("prixTrajet", 0));
         trajet.setPrixTrajet(ert);
-
 
 
         t_numero.setText("" + trajet.hashCode());
@@ -194,27 +191,31 @@ public class TripActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //TODO:Book un trip
-                    Log.e("qsdqsd", "CLICK book");
-                    Intent intent2 =getIntent();
-                    String key= intent2.getStringExtra("key");
+                    Intent intent2 = getIntent();
+                    String key = intent2.getStringExtra("key");
                     //Add the current user to trip passanger list
-                   ;
+
                     final String[] currentUserKey = new String[1];
-                    databaseReference = FirebaseDatabase.getInstance().getReference("trajets/"+key+"/vayageurs");
-                    Log.e("keyAAA---------------->",key);
+                    databaseReference = FirebaseDatabase.getInstance().getReference("trajets/" + key + "/vayageurs");
+
+                    Log.e("keyAAA---------------->", key);
 
 
-                    usrDao.findUserbyEmail(new SimpleCallback<User>() {
+                    usrDao.findUserKeybyEmail(new SimpleCallback<String>() {
                         @Override
-                        public void callback(User data) {
-                             Map<String, Object> vayageurs = new HashMap<>();
-                            String keyVoyageur = databaseReference.push().getKey();
-                            currentUserKey[0] =data.getId();
-                            vayageurs.put(keyVoyageur,currentUserKey[0]);
-                            databaseReference.updateChildren(vayageurs);
+                        public void callback(String data) {
+                            if (data != null) {
+                                String keyUser = data;
+                                //Add the current user to trip passanger list
+                                Map<String, Object> vayageurs = new HashMap<>();
+                                String keyVoyageur = databaseReference.push().getKey();
+                                vayageurs.put(keyVoyageur, keyUser);
+                                databaseReference.updateChildren(vayageurs);
+                            } else {
+                                Log.e("Error", "Error in booking trip");
+                            }
                         }
-                    },currentUsermail);
-
+                    }, currentUsermail);
 
                     //Start the next activity
                     Intent intent = new Intent(TripActivity.this, HomeActivity.class);
@@ -224,7 +225,6 @@ public class TripActivity extends AppCompatActivity {
 
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
-
 
 
                     startActivity(intent);
