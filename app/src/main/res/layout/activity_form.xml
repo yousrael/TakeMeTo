@@ -190,7 +190,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/takeimage"
-                android:text="Choose a profil image" />
+                android:text="Choose a profil image"
+                android:onClick="chooseProfilImage"/>
 
             <Button
                 android:id="@+id/CreateNewUser"

@@ -7,6 +7,9 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -243,6 +246,61 @@ public class TripActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.trips:
+                getTrips();
+                return true;
+            case R.id.profil:
+                affichProfil();
+                return true;
+            case R.id.suggestions:
+                suggestions();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void suggestions() {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[] { "TakeMeToTeam@gmail.com" }); // email id can be hardcoded too
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Done!"));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "No Email client found!!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void affichProfil() {
+        //  FirebaseAuth.AuthStateListener mAuthListener;
+        final Intent i;
+        i = new Intent(this, ProfilActivity.class);
+        i.putExtra("requestCode", 0);
+        startActivity(i);
+
+    }
+
+
+
+
+    private void getTrips() {
+        Intent i=new Intent(this,MyListTripsActivity.class);
+        startActivity(i);
 
     }
 

@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -96,6 +100,16 @@ public class SuggestTripActivity extends AppCompatActivity {
             }
 
         };
+        arrivalDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(SuggestTripActivity.this, datea, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
         dated = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -109,7 +123,17 @@ public class SuggestTripActivity extends AppCompatActivity {
             }
 
         };
-        arrivalDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        departureDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(SuggestTripActivity.this, dated, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+      /*  arrivalDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!dateab) {
@@ -133,7 +157,7 @@ public class SuggestTripActivity extends AppCompatActivity {
                 }
                 datedb = !datedb;
             }
-        });
+        });*/
         //end date dialog
 
     }
@@ -150,7 +174,7 @@ public class SuggestTripActivity extends AppCompatActivity {
                 if (data != null) {
                     Map<String, Object> voyageurs = new HashMap<>();
                     String keyvoyageur = databaseReference.child("vayageurs").push().getKey();
-                    voyageurs.put(keyvoyageur, "null");
+                    voyageurs.put(keyvoyageur, "-KfobKb7oMRm1JMQvl8L");
                     String key = databaseReference.push().getKey();
                     databaseReference.child(key).setValue(new Trajet(data,
                             departureDate.getText().toString() + "_" + departure.getText().toString() + "_" + arrival.getText().toString(),
@@ -181,5 +205,60 @@ public class SuggestTripActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
 
         arrivalDate.setText(sdf.format(myCalendar.getTime()));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.trips:
+                getTrips();
+                return true;
+            case R.id.profil:
+                affichProfil();
+                return true;
+            case R.id.suggestions:
+                suggestions();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void suggestions() {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[] { "TakeMeToTeam@gmail.com" }); // email id can be hardcoded too
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Done!"));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "No Email client found!!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void affichProfil() {
+        //  FirebaseAuth.AuthStateListener mAuthListener;
+        final Intent i;
+        i = new Intent(this, ProfilActivity.class);
+        i.putExtra("requestCode", 0);
+        startActivity(i);
+
+    }
+
+
+
+
+    private void getTrips() {
+        Intent i=new Intent(this,MyListTripsActivity.class);
+        startActivity(i);
+
     }
 }

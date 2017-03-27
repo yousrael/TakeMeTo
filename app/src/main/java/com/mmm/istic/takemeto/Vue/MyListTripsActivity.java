@@ -32,7 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class MyListTripsActivity extends AppCompatActivity {
+public class MyListTripsActivity extends Activity {
     private ListView malistView;
     private ListView malistViewReservations;
     private SimpleAdapter mlistAdapter;
@@ -87,7 +87,6 @@ public class MyListTripsActivity extends AppCompatActivity {
             public void callback(String data) {
                 if (data != null) {
                     keyUser = data;
-                    Log.d("current user key : ", data);
                     Query querytrajets = databaseReference.orderByChild("user").equalTo(keyUser);
 
 
@@ -106,20 +105,6 @@ public class MyListTripsActivity extends AppCompatActivity {
 
 
                                 values = new ArrayList<>(trajets.values());
-                               /* for (Trajet trajet : values) {
-
-                                    for (Map.Entry voyageur : trajet.getVayageurs().entrySet()) {
-                                        if (voyageur.getValue().equals(keyUser)) {
-                                            map = new HashMap<String, String>();
-                                            map.put("departure", trajet.getDeparture() + "  ");
-                                            map.put("arrival", trajet.getArrival() + "  ");
-                                            map.put("departureDate", trajet.getDepartureDate() + "  ");
-                                            map.put("arrivalDate", trajet.getArrivalDate());
-                                            map.put("user", trajet.getUser());
-                                            mapItems.add(map);
-                                        }
-                                    }
-                                }*/
                                 for (int i = 0; i < values.size(); i++) {
 
                                     map = new HashMap<String, String>();
@@ -131,7 +116,6 @@ public class MyListTripsActivity extends AppCompatActivity {
                                     map.put("prixTrajet", ""+values.get(i).getPrixTrajet());
                                     mapItems.add(map);
                                 }
-
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
                                 mlistAdapter = new SimpleAdapter(getBaseContext(), mapItems, R.layout.item,
@@ -195,22 +179,22 @@ public class MyListTripsActivity extends AppCompatActivity {
                                         }
                                     }
                                 }
-/*                                for (int i = 0; i < values.size(); i++) {
-                                    for (int j = 0; j < values.get(i).getVayageurs().size(); j++) {
-                                        if (values.get(i).getVayageurs().get(j) == keyUser) {
-                                            mapReservation = new HashMap<String, String>();
-                                            mapReservation.put("departure", values.get(i).getDeparture() + "  ");
-                                            mapReservation.put("arrival", values.get(i).getArrival() + "  ");
-                                            mapReservation.put("departureDate", values.get(i).getDepartureDate() + "  ");
-                                            mapReservation.put("arrivalDate", values.get(i).getArrivalDate());
-                                            mapItemsReservation.add(mapReservation);
-                                        }
-                                    }
-                                }*/
+//                                for (int i = 0; i < values.size(); i++) {
+//                                    for (int j = 0; j < values.get(i).getVayageurs().size(); j++) {
+//                                        if (values.get(i).getVayageurs().get(j) == keyUser) {
+//                                            mapReservation = new HashMap<String, String>();
+//                                            mapReservation.put("departure", values.get(i).getDeparture() + "  ");
+//                                            mapReservation.put("arrival", values.get(i).getArrival() + "  ");
+//                                            mapReservation.put("departureDate", values.get(i).getDepartureDate() + "  ");
+//                                            mapReservation.put("arrivalDate", values.get(i).getArrivalDate());
+//                                            mapReservationItemsReservation.add(mapReservation);
+//                                        }
+//                                    }
+//                                }
 
                                 // Création d'un SimpleAdapter qui se chargera de mettre les items présent dans notre list (mapItems) dans la vue item.xml
                                 mlistAdapter = new SimpleAdapter(getBaseContext(), mapItemsReservation, R.layout.item,
-                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate", "places", "prixTrajet", "user"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6, R.id.textView17});
+                                        new String[]{"departure", "arrival", "departureDate", "arrivalDate", "places", "prixTrajet","user"}, new int[]{R.id.textView1, R.id.textView2, R.id.textView3, R.id.textView4, R.id.textView5, R.id.textView6,R.id.textView17});
                                 //ici on affecte l'adapteur pour la listView afin de la remplir avec les elemets de item
                                 malistViewReservations.setAdapter(mlistAdapter);
 

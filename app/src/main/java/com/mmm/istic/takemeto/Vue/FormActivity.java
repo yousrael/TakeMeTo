@@ -134,34 +134,6 @@ public class FormActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-   takeImage.setOnClickListener(new View.OnClickListener() {
-       @Override
-       public void onClick(View v) {
-
-           final CharSequence[] items = { "Take Photo", "Choose from Library",
-                   "Cancel" };
-           AlertDialog.Builder builder = new AlertDialog.Builder(FormActivity.this);
-           builder.setTitle("Add Photo!");
-           builder.setItems(items, new DialogInterface.OnClickListener() {
-               @Override
-               public void onClick(DialogInterface dialog, int item) {
-                   boolean result=Utility.checkPermission(FormActivity.this);
-                   if (items[item].equals("Take Photo")) {
-                       userChoosenTask="Take Photo";
-                       if(result)
-                           cameraIntent();
-                   } else if (items[item].equals("Choose from Library")) {
-                       userChoosenTask="Choose from Library";
-                       if(result)
-                           galleryIntent();
-                   } else if (items[item].equals("Cancel")) {
-                       dialog.dismiss();
-                   }
-               }
-           });
-           builder.show();
-       }
-   });
 
 
     }
@@ -211,7 +183,7 @@ public class FormActivity extends AppCompatActivity {
     }
 
     //Choose profil image
-   /* public void chooseProfilImage(View view) {
+    public void chooseProfilImage(View view) {
 
         final CharSequence[] items = { "Take Photo", "Choose from Library",
                 "Cancel" };
@@ -236,7 +208,7 @@ public class FormActivity extends AppCompatActivity {
         });
         builder.show();
 
-    }*/
+    }
 
     private void cameraIntent()
     {
