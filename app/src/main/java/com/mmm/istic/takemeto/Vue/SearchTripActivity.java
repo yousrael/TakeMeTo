@@ -133,9 +133,19 @@ public class SearchTripActivity extends AppCompatActivity {
             case R.id.suggestions:
                 suggestions();
                 return true;
+            case R.id.home:
+                goBackHome();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void goBackHome() {
+        //  FirebaseAuth.AuthStateListener mAuthListener;
+        final Intent i;
+        i = new Intent(SearchTripActivity.this, HomeActivity.class);
+        startActivity(i);
     }
 
     private void suggestions() {
