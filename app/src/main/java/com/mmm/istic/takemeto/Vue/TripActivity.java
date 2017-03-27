@@ -87,7 +87,7 @@ public class TripActivity extends AppCompatActivity {
                 public void callback(User data) {
                     emailTripUser = data.getMail();
                     Log.e("Setting emailTripUser", "" + emailTripUser);
-                    t_nom_prenom.setText(emailTripUser);
+                    t_nom_prenom.setText(""+data.getNom()+" "+data.getPrenom());
                     //set listener sur le nom pour afficher le profile
                     TextView showUser = (TextView) findViewById(R.id.t_nom_prenom);
                     showUser.setOnClickListener(new View.OnClickListener() {
@@ -260,9 +260,24 @@ public class TripActivity extends AppCompatActivity {
             case R.id.suggestions:
                 suggestions();
                 return true;
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(this, StartActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.home:
+                goBackHome();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void goBackHome() {
+        //  FirebaseAuth.AuthStateListener mAuthListener;
+        final Intent i;
+        i = new Intent(TripActivity.this, HomeActivity.class);
+        startActivity(i);
     }
 
     private void suggestions() {

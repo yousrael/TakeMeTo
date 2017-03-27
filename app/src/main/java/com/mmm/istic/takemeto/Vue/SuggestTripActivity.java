@@ -226,9 +226,25 @@ public class SuggestTripActivity extends AppCompatActivity {
             case R.id.suggestions:
                 suggestions();
                 return true;
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(this, StartActivity.class);
+                startActivity(intent);
+                Toast.makeText(this, "You're disconnected", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.home:
+                goBackHome();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void goBackHome() {
+        //  FirebaseAuth.AuthStateListener mAuthListener;
+        final Intent i;
+        i = new Intent(SuggestTripActivity.this, HomeActivity.class);
+        startActivity(i);
     }
 
     private void suggestions() {

@@ -379,9 +379,27 @@ public class FormModificationActivity extends AppCompatActivity {
             case R.id.suggestions:
                 suggestions();
                 return true;
+<<<<<<< HEAD
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(this, StartActivity.class);
+                startActivity(intent);
+                Toast.makeText(this, "You're disconnected", Toast.LENGTH_SHORT).show();
+=======
+            case R.id.home:
+                goBackHome();
+>>>>>>> f08fe31e3935ca806245a21ad6e8ba45f4b9987d
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void goBackHome() {
+        //  FirebaseAuth.AuthStateListener mAuthListener;
+        final Intent i;
+        i = new Intent(FormModificationActivity.this, HomeActivity.class);
+        startActivity(i);
     }
 
     private void suggestions() {
