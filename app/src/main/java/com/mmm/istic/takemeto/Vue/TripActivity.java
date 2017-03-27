@@ -172,14 +172,6 @@ public class TripActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     //TODO:edit un trip
                     Log.e("qsdqsd", "CLICK edit");
-                    //Add the current user to trip passanger list
-                    Map<String, Object> vayageurs = new HashMap<>();
-
-                    databaseReference = FirebaseDatabase.getInstance().getReference("trajets/-Kg4Pwto2HoNaSaKNOmM/vayageurs");
-                    String keyVoyageur = databaseReference.push().getKey();
-
-                    vayageurs.put(keyVoyageur, "current user key");
-                    databaseReference.updateChildren(vayageurs);
 
                     //Start the next activity
                     Intent intent = new Intent(TripActivity.this, SuggestTripActivity.class);
