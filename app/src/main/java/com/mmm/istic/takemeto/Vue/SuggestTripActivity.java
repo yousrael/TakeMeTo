@@ -5,15 +5,20 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mmm.istic.takemeto.R;
+import com.mmm.istic.takemeto.dao.SimpleCallback;
+import com.mmm.istic.takemeto.dao.UserDaoImpl;
 import com.mmm.istic.takemeto.model.Trajet;
 import com.mmm.istic.takemeto.model.User;
 
@@ -26,7 +31,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-public class SuggestTripActivity extends Activity {
+public class SuggestTripActivity extends AppCompatActivity {
 
     //Firebase
     private FirebaseAuth firebaseAuth;
@@ -135,18 +140,33 @@ public class SuggestTripActivity extends Activity {
 
     private void addNewTrajet() {
 
-        Map<String, Object> voyageurs = new HashMap<>();
-        String key = databaseReference.push().getKey();
-        String keyvoyageur = databaseReference.child("vayageurs").push().getKey();
-        voyageurs.put(keyvoyageur, "-KfobKb7oMRm1JMQvl8L");
-        databaseReference.child(key).setValue(new Trajet("-KfobKb7oMRm1JMQvl8L",
-                departureDate.getText().toString() + "_" + departure.getText().toString() + "_" + arrival.getText().toString(),
-                arrivalDate.getText().toString(),
-                departure.getText().toString(),
-                arrival.getText().toString(),
-                Integer.valueOf(places.getText().toString()),
-                Integer.valueOf(prixTrajet.getText().toString()),
-                voyageurs));
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
+        UserDaoImpl serviceUser = new UserDaoImpl();
+
+        serviceUser.findUserKeybyEmail(new SimpleCallback<String>() {
+            @Override
+            public void callback(String data) {
+                if (data != null) {
+                    Map<String, Object> voyageurs = new HashMap<>();
+                    String keyvoyageur = databaseReference.child("vayageurs").push().getKey();
+                    voyageurs.put(keyvoyageur, "null");
+                    String key = databaseReference.push().getKey();
+                    databaseReference.child(key).setValue(new Trajet(data,
+                            departureDate.getText().toString() + "_" + departure.getText().toString() + "_" + arrival.getText().toString(),
+                            arrivalDate.getText().toString(),
+                            departure.getText().toString(),
+                            arrival.getText().toString(),
+                            Integer.valueOf(places.getText().toString()),
+                            Integer.valueOf(prixTrajet.getText().toString()),
+                            voyageurs));
+                } else {
+                    // error
+                }
+            }
+
+        },email);
+
     }
 
     //Updating the after selectining it from the dialog
