@@ -89,6 +89,7 @@ public class SearchResultActivity extends AppCompatActivity {
                     final ArrayList<Trajet> values = new ArrayList<>(trajets.values());
 
 
+
                     int length = values.size();
                     String[] trajetStrings = new String[length];
                     for (int i = 0; i < length; i++) {
@@ -118,13 +119,14 @@ public class SearchResultActivity extends AppCompatActivity {
 
                             intent1.putExtra("key",keys.get(position));
                             Log.d("key in Search",keys.get(position));
-                            intent.putExtra("user",values.get(position).getUser());
+                            intent1.putExtra("user",values.get(position).getUser());
                             intent1.putExtra("departure",values.get(position).getDeparture());
                             intent1.putExtra("arrival",values.get(position).getArrival());
                             intent1.putExtra("departureDate",values.get(position).getDepartureDate());
                             intent1.putExtra("arrivalDate",values.get(position).getArrivalDate());
                             intent1.putExtra("prixTrajet",values.get(position).getPrixTrajet());
                             intent1.putExtra("places",values.get(position).getPlaces());
+                            intent1.putExtra("keyUser",values.get(position).getUser());
                             Log.e("Item Clicked",keys.get(position));
                             startActivity(intent1);
 
