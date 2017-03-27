@@ -188,7 +188,9 @@ public class ProfilActivity extends AppCompatActivity{
                 startActivity(intent);
                 Toast.makeText(this, "You're disconnected", Toast.LENGTH_SHORT).show();
                 return true;
-
+            case R.id.home:
+                goBackHome();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
