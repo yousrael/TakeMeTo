@@ -23,7 +23,7 @@
             android:layout_gravity="left"
             android:layout_weight="1"
             android:text="Please fill the form below"
-            android:textSize="25dp"/>
+            android:textSize="20dp"/>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
