@@ -264,6 +264,7 @@ public class TripActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(this, StartActivity.class);
                 startActivity(intent);
+                Toast.makeText(this, "You're disconnected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.home:
                 goBackHome();
