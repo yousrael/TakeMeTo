@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SearchResultActivity extends Activity {
+public class SearchResultActivity extends AppCompatActivity {
 
     //To get the criteria filter via intent from the previous activity
     private String departureDate;

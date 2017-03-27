@@ -17,7 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mmm.istic.takemeto.R;
 
-public class SignInActivity extends Activity {
+public class SignInActivity extends AppCompatActivity {
 
     private EditText email;
     private EditText password;

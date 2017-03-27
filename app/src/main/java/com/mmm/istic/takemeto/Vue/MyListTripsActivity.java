@@ -32,7 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class MyListTripsActivity extends Activity {
+public class MyListTripsActivity extends AppCompatActivity {
     private ListView malistView;
     private ListView malistViewReservations;
     private SimpleAdapter mlistAdapter;

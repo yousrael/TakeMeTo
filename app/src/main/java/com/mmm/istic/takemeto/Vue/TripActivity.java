@@ -39,7 +39,7 @@ import java.util.Objects;
  * @intent.putExtra("emailUser",email);
  */
 
-public class TripActivity extends Activity {
+public class TripActivity extends AppCompatActivity {
 
 
     String emailTripUser;

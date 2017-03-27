@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.mmm.istic.takemeto.R;
 
-public class StartActivity extends Activity {
+public class StartActivity extends AppCompatActivity {
 
 
 

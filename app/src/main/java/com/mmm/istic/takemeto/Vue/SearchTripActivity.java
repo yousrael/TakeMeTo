@@ -23,7 +23,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class SearchTripActivity extends Activity {
+public class SearchTripActivity extends AppCompatActivity {
 
     private EditText departureDate;
     private EditText arrivalDate;
