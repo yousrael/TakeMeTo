@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mmm.istic.takemeto.R;
 
+
+//Home Activity
 public class HomeActivity extends AppCompatActivity {
 
     @Override
